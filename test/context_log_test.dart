@@ -1,4 +1,4 @@
-class ContextLogTest {
+// Copyright (c) 2012 Solvr, Inc. All rights reserved.
   final Logger _logger;
   
   ContextLogTest(): _logger = LoggerFactory.getLogger("ContextLogTest") {

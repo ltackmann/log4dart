@@ -1,4 +1,4 @@
-class SimpleLogTest {
+// Copyright (c) 2012 Solvr, Inc. All rights reserved.
   final Logger _logger;
   
   SimpleLogTest(): _logger = LoggerFactory.getLogger("SimpleLogTest") {

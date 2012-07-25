@@ -1,4 +1,4 @@
-#library("qalqo:common:log4dart:test");
+// Copyright (c) 2012 Solvr, Inc. All rights reserved.
 
 #import('../lib.dart');
 #import('../file/file_appender.dart');
