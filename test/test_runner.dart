@@ -1,13 +1,16 @@
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
+//
+// This open source software is governed by the license terms 
+// specified in the LICENSE file
 
-#import('../lib.dart');
-#import('../file/file_appender.dart');
+#import("../lib.dart");
+#import("../lib/file/file_appender.dart");
 
-#source('context_log_test.dart');
-#source('simple_log_test.dart');
+#source("context_log_test.dart");
+#source("simple_log_test.dart");
 
 main() {
-  // simple logger setup
+  // Simple logger setup
   LoggerFactory.builder = (name) => new LoggerImpl(name, infoEnabled:false); 
   
   // Advanced logger setup

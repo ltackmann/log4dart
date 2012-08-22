@@ -3,10 +3,10 @@
 // This open source software is governed by the license terms 
 // specified in the LICENSE file
 
-#library('qalqo:log4dart:file');
+#library('log4dart:file');
 
-#import('dart:io');
-#import('../lib.dart');
+#import("dart:io");
+#import("../../lib.dart");
 
 /**
  * Appender that logs to a file
