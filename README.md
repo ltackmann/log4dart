@@ -47,7 +47,6 @@ LoggerFactory.config["MyClass"].infoEnabled = true;
   
 // Use a file appedender for a specifc logger
 LoggerFactory.config["OtherClass"].appenders = [new FileAppender("/tmp/log.txt")];
-}; 
 ```
 
 For log formating **log4dart** supports many of the same options as is known
