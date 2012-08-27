@@ -14,5 +14,6 @@
  * Appender that logs to a file
  */
 interface FileAppender extends Appender default _FileAppender {
+  FileAppender(String path);
 }
 

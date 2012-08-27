@@ -6,10 +6,10 @@
 class LogLevel {
   const LogLevel(this.name);
   
-  static final DEBUG = const LogLevel("debug");
-  static final ERROR = const LogLevel("error");
-  static final INFO = const LogLevel("info");
-  static final WARN = const LogLevel("warn");
+  static final DEBUG = const LogLevel("DEBUG");
+  static final ERROR = const LogLevel("ERROR");
+  static final INFO = const LogLevel("INFO");
+  static final WARN = const LogLevel("WARN");
   
   final String name;  
 }

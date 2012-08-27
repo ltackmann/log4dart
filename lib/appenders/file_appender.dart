@@ -3,7 +3,7 @@
 // This open source software is governed by the license terms 
 // specified in the LICENSE file
 
-class _FileAppender implements Appender {
+class _FileAppender implements FileAppender {
   _FileAppender(this._path);
 
   void doAppend(String message) {

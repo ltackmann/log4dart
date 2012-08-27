@@ -6,7 +6,7 @@
 /**
  * Logger implementation with multiple appender and diagnostic support. 
  * 
- * Defaults to console logging.
+ * Defaults to console logging with "[%d] %c %n:%x %m" as log format
  */
 class LoggerImpl implements Logger {
    static Map<String, String> _context;
@@ -19,7 +19,7 @@ class LoggerImpl implements Logger {
        appenders = [new _ConsoleAppender()];
      }
      if(formatter == null) {
-       formatter = new LogRecordFormatter("%c [%d] %n:%x %m");
+       formatter = new LogRecordFormatter("[%d] %c %n:%x %m");
      }
    }
   
