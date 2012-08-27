@@ -1,13 +1,16 @@
 Log4Dart
 ========
-**Log4Dart** is a logger for Dart inspired by [Slf4J][slf4j]. 
+**Log4Dart** is a logger for Dart inspired by [Slf4J][slf4j]. It supports
+logging at ERROR, WARN, INFO and DEBUG levels and has easy support for
+configuring specific appenders and logging formats. It also supports a nested
+diagnostic context that allows you to eassly make session specific log traces
+accross deep and recursive calls. 
 
-The logger and its appender are interfaces and thus supports multiple implementations. The following 
-implementations are included
+Currently the following appenders are included
 
   * **ConsoleAppender** Appender that logs to the console
-  * **file/FileAppender** Appender that logs to a file (this appender is not enabled by default as it depends on **dart:io**) 
-  * **LoggerImpl** Logger implementation with multiple appenders and diagnostic/tracing support
+  * **FileAppender** Appender that logs to a file
+  * **StringAppender** Appender that logs to a string buffer 
 
 Getting started
 ---------------
@@ -27,34 +30,37 @@ class MyClass {
 
 Log configuration
 -----------------
-By default the **LoggerFactory** will return a logger that logs to the
-console, with all log levels enabled. If you need a different logger or
-dislike the default settings then you can configure the
-**LoggerFactory's** builder function. 
+The logger is configured through the LogConfig API that can be accessed
+by logger name or wildcard via the **LoggerFactory.config["logger-name"]**
+handle. Below are some examples: 
 
 ```
-typedef Logger LoggerBuilder(String loggerName);
-```
-
-This is the method invoked by the factory when asked for a logger. The
-following example uses a **LoggerBuilder** to disable debug messages:
-
-```
-LoggerFactory.builder = (name) => new LoggerImpl(name, debugEnabled:false); 
-```
-
-You can use this to return different loggers for different classes
-
-```
-LoggerFactory.builder = (name) {
-  if(name == "ClassThatMakesAllotOfNoise") return new LoggerImpl(name, debugEnabled:false, infoEnabled:false);
-  if(name == "ClassWithProblems") return new LoggerImpl(name, debugEnabled:true);
-  // default logger for the rest
-  return new LoggerImpl(name, debugEnabled:false, appenders:[new FileAppender("log.txt")]);
+// Disable info for all loggers 
+LoggerFactory.config["*"].infoEnabled = false;
+  
+// Set the default logging format for all loggers
+LoggerFactory.config["*"].logFormat = "[%d] %c %n:%x %m";
+  
+// Override logging levels for specifc loggers
+LoggerFactory.config["MyClass"].debugEnabled = false;
+LoggerFactory.config["MyClass"].infoEnabled = true;
+  
+// Use a file appedender for a specifc logger
+LoggerFactory.config["OtherClass"].appenders = [new FileAppender("/tmp/log.txt")];
 }; 
 ```
 
+For log formating **log4dart** supports many of the same options as is known
+from other loggers, such as:
+
+ * **c** Output the level (category) of the logging event
+ * **d** Output the date when the log message was recorded
+ * **m** Output the actual logging message
+ * **n** Output the name of the logger that recorded the log
+ * **x** Output the context of the logger
+
 For more information see the **TestRunner.dart** class in the **test** folder
+
 
 Diagnostic support
 ------------------
@@ -81,7 +87,6 @@ Some missing stuff (feel free to add more):
 
   1. Generate DartDoc for Logger and Appender interface
   1. Create a Dart version of **sprintf** and use it for implementing the formatters 
-  1. Figure out how best to configure the log output format
   1. When reflection arrives in Dart add ability to show the class/line where the log message originated
 
 feel free to send in patched for these (or other features you miss).
