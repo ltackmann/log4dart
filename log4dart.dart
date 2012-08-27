@@ -6,6 +6,7 @@
 #library("log4dart");
 
 #source("lib/appenders/console_appender.dart");
+#source("lib/appenders/string_appender.dart");
 
 #source("lib/appender.dart");
 #source("lib/logger.dart");

@@ -6,8 +6,8 @@
 /**
  * Appender that logs to a [String]
  */
-class _StringAppender implements Appender {
-  _StringAppender()
+class StringAppender implements Appender {
+  StringAppender()
     : _stringBuffer = new StringBuffer();
   
   void doAppend(String message) {

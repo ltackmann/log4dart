@@ -15,7 +15,7 @@ class LoggerConfigMap {
         defaultConfig.errorEnabled = true;
         defaultConfig.infoEnabled = true;
         defaultConfig.warnEnabled = true;
-        defaultConfig.appenders = [ new _ConsoleAppender() ];
+        defaultConfig.appenders = [ new ConsoleAppender() ];
         defaultConfig.logFormat = "[%d] %c %n:%x %m";
       
         _configs["*"] = defaultConfig;
