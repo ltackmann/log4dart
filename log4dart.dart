@@ -11,6 +11,8 @@
 #source("lib/logger.dart");
 #source("lib/logger_factory.dart");
 #source("lib/logger_impl.dart");
+#source("lib/logger_config.dart");
+#source("lib/logger_config_map.dart");
 #source("lib/log_format_reader.dart");
 #source("lib/log_level.dart");
 #source("lib/log_record.dart");

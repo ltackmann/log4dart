@@ -11,14 +11,16 @@
 class LoggerImpl implements Logger {
    static Map<String, String> _context;
    
-   LoggerImpl(this.name, [this.debugEnabled=true, this.errorEnabled=true, this.infoEnabled=true, this.warnEnabled=true, this.appenders=null, String logFormat="[%d] %c %n:%x %m"]) { 
+   LoggerImpl(this.name, this._config) { 
      if(_context == null) {
        _context = new LinkedHashMap();
      }
-     if(appenders == null) {
-       appenders = [new _ConsoleAppender()];
-     }
-     formatter = new LogRecordFormatter(logFormat);
+     _formatter = new LogRecordFormatter(_config.logFormat);
+     
+     debugEnabled = _config.debugEnabled;
+     errorEnabled = _config.errorEnabled;
+     infoEnabled = _config.infoEnabled;
+     warnEnabled = _config.warnEnabled;
    }
   
    debug(String message) {
@@ -67,23 +69,24 @@ class LoggerImpl implements Logger {
    
    void _append(String message, LogLevel level) {
      String ctx = "";
-     if(formatter.recordContext) {
+     if(_formatter.recordContext) {
       _context.forEach(f(k,v) => ctx = ctx.concat("$v:"));
      }
      var logRecord = new LogRecord(message, level, name, ctx);
-     var formattetMessage = formatter.format(logRecord);
-     appenders.forEach((Appender appender) => appender.doAppend(formattetMessage));
+     var formattetMessage = _formatter.format(logRecord);
+     _config.appenders.forEach((Appender appender) => appender.doAppend(formattetMessage));
    }
    
    String _format(String format, List args) {
      throw new UnsupportedOperationException("TODO waiting for printf support in Dart Strings");
    }
    
-   final bool debugEnabled;
-   final bool errorEnabled;
-   final bool infoEnabled;
-   final bool warnEnabled;
+   bool debugEnabled;
+   bool errorEnabled;
+   bool infoEnabled;
+   bool warnEnabled;
    final String name;
-   List<Appender> appenders;
-   LogRecordFormatter formatter;
+   
+   final LoggerConfig _config;
+   LogRecordFormatter _formatter;
 }

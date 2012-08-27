@@ -10,18 +10,20 @@
 #source("simple_log_test.dart");
 
 main() {
-  // Simple logger setup
-  LoggerFactory.builder = (name) => new LoggerImpl(name, infoEnabled:false); 
+  // Disable info for all loggers 
+  LoggerFactory.config["*"].infoEnabled = false;
   
-  // Advanced logger setup
-  LoggerFactory.builder = (name) {
-    Map<String,Logger> loggerMap = {
-      "SimpleLogTest": new LoggerImpl(name, debugEnabled:false, infoEnabled:false),
-      "ContextLogTest": new LoggerImpl(name, debugEnabled:true, appenders:[new FileAppender("/tmp/log.txt")])
-    };
-    return loggerMap[name];
-  }; 
+  // Set the default logging format for all loggers
+  LoggerFactory.config["*"].logFormat = "[%d] %c %n:%x %m";
   
+  // Set debug levels and format for specifc loggers
+  LoggerFactory.config["SimpleLogTest"].debugEnabled = false;
+  LoggerFactory.config["SimpleLogTest"].infoEnabled = true;
+  
+  // Use a file appedender for a specifc logger
+  LoggerFactory.config["ContextLogTest"].appenders = [new FileAppender("/tmp/log.txt")];
+  
+  // run tests
   new SimpleLogTest();
   new ContextLogTest();
 }
