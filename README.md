@@ -1,7 +1,7 @@
 Log4Dart
 ========
-**Log4Dart** is a logger for Dart inspired by [Slf4J][slf4j]. It supports
-logging at ERROR, WARN, INFO and DEBUG levels and has easy support for
+**Log4Dart** is a powerful and extensible logger for Dart inspired by [Slf4J][slf4j]. 
+It supports logging at ERROR, WARN, INFO and DEBUG levels and has easy support for
 configuring specific appenders and logging formats. It also supports a nested
 diagnostic context that allows you to eassly make session specific log traces
 accross deep and recursive calls. 
