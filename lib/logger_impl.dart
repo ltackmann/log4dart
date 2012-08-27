@@ -11,16 +11,14 @@
 class LoggerImpl implements Logger {
    static Map<String, String> _context;
    
-   LoggerImpl(this.name, [this.debugEnabled=true, this.errorEnabled=true, this.infoEnabled=true, this.warnEnabled=true, this.appenders=null, this.formatter=null]) { 
+   LoggerImpl(this.name, [this.debugEnabled=true, this.errorEnabled=true, this.infoEnabled=true, this.warnEnabled=true, this.appenders=null, String logFormat="[%d] %c %n:%x %m"]) { 
      if(_context == null) {
        _context = new LinkedHashMap();
      }
      if(appenders == null) {
        appenders = [new _ConsoleAppender()];
      }
-     if(formatter == null) {
-       formatter = new LogRecordFormatter("[%d] %c %n:%x %m");
-     }
+     formatter = new LogRecordFormatter(logFormat);
    }
   
    debug(String message) {
