@@ -8,7 +8,7 @@
  */
 interface Appender {
   /**
-   * Log a message. The message can be any type, this is done to facilitate a wide range of logging mecahnicms.
+   * Log a message. 
    */
-  void doAppend(Dynamic logMessage);
+  doAppend(String message);
 }

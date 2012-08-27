@@ -10,6 +10,7 @@
  */
 class LoggerFactory {
   static Map<String, Logger> _loggerCache;
+  static Map<String, Map> _loggerConfig;
   static LoggerFactory _instance;
   static LoggerBuilder _builder;
   

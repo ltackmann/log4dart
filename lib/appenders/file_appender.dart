@@ -3,18 +3,8 @@
 // This open source software is governed by the license terms 
 // specified in the LICENSE file
 
-#library('log4dart:file');
-
-#import("dart:io");
-#import("../../lib.dart");
-
-/**
- * Appender that logs to a file
- */
-class FileAppender implements Appender {
-  final String _path;
-  
-  FileAppender(this._path);
+class _FileAppender implements Appender {
+  _FileAppender(this._path);
 
   void doAppend(String message) {
     // TODO inneficient to open file for each log message, however I am not aware of 
@@ -22,4 +12,7 @@ class FileAppender implements Appender {
     File file = new File(_path);
     file.openSync(FileMode.APPEND).writeString("$message\n");
   }
+  
+  final String _path;
 }
+

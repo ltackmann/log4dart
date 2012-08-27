@@ -5,9 +5,14 @@
 
 #library("log4dart");
 
+#source("lib/appenders/console_appender.dart");
+
 #source("lib/appender.dart");
-#source("lib/console_appender.dart");
 #source("lib/logger.dart");
-#source("lib/logger_impl.dart");
 #source("lib/logger_factory.dart");
+#source("lib/logger_impl.dart");
+#source("lib/log_format_reader.dart");
+#source("lib/log_level.dart");
+#source("lib/log_record.dart");
+#source("lib/log_record_formatter.dart");
 

@@ -4,8 +4,6 @@
 // specified in the LICENSE file
 
 class ContextLogTest {  
-  final Logger _logger;
-  
   ContextLogTest(): _logger = LoggerFactory.getLogger("ContextLogTest") {
     _logger.putContext("context", "context-message");
     try {
@@ -17,4 +15,6 @@ class ContextLogTest {
       _logger.removeContext("context");
     }
   }
+  
+  final Logger _logger;
 }
