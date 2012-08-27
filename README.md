@@ -30,7 +30,7 @@ class MyClass {
 
 Log configuration
 -----------------
-The logger is configured through the LogConfig API that can be accessed
+The logger is configured through the **LogConfig** API that can be accessed
 by logger name or wildcard via the **LoggerFactory.config["logger-name"]**
 handle. Below are some examples: 
 
