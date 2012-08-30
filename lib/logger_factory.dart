@@ -37,7 +37,7 @@ class LoggerFactory {
     return logger;
   }
   
-  static LoggerConfigMap get config() {
+  static LoggerConfigMap get config {
     if(_configMap == null) {
       _configMap = new LoggerConfigMap();
     }

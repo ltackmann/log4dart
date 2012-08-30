@@ -52,22 +52,22 @@ interface Logger {
   /**
    * Is the logger instance enabled for the DEBUG level?
    */
-  bool get debugEnabled();
+  bool get debugEnabled;
   
   /**
    * Is the logger instance enabled for the INFO level?
    */
-  bool get infoEnabled();
+  bool get infoEnabled;
   
   /**
    * Is the logger instance enabled for the WARN level?
    */
-  bool get warnEnabled();
+  bool get warnEnabled;
   
   /**
    * Is the logger instance enabled for the ERROR level?
    */
-  bool get errorEnabled();
+  bool get errorEnabled;
   
   /**
    * Clear all entries in the diagnostic context.

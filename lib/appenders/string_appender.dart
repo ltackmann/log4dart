@@ -14,7 +14,7 @@ class StringAppender implements Appender {
     _stringBuffer.add(message);
   }
   
-  String get log() => _stringBuffer.toString();
+  String get log => _stringBuffer.toString();
   
   clearLog() => _stringBuffer.clear();
   

@@ -6,25 +6,31 @@ configuring specific appenders and logging formats. It also supports a nested
 diagnostic context that allows you to eassly make session specific log traces
 accross deep and recursive calls. 
 
-Currently the following appenders are included
+Using log4dart
+--------------
+To use Log4Dart add the following to your **pubspec.yaml** file
 
-  * **ConsoleAppender** Appender that logs to the console
-  * **FileAppender** Appender that logs to a file
-  * **StringAppender** Appender that logs to a string buffer 
 
-Getting started
----------------
-The logger is accessed through  the **LoggerFactory** 
+now install it by executing **pub install** and in your Dart program add the import
+
+
+```
+#import("package:log4dart/log4dart.dart");
+```
+
+Now you are ready to use **log4dart**. The example below shows you how
+to use it in your code.
 
 ```
 class MyClass {
-  final Logger _logger;
-
-  MyClass(): _logger = LoggerFactory.getLogger("MyClass");
+  MyClass()
+    : _logger = LoggerFactory.getLogger("MyClass");
 
   someMethod() {
     _logger.info("a info message");
   }
+  
+  final Logger _logger;
 }
 ```
 
@@ -44,9 +50,6 @@ LoggerFactory.config["*"].logFormat = "[%d] %c %n:%x %m";
 // Override logging levels for specifc loggers
 LoggerFactory.config["MyClass"].debugEnabled = false;
 LoggerFactory.config["MyClass"].infoEnabled = true;
-  
-// Use a file appedender for a specifc logger
-LoggerFactory.config["OtherClass"].appenders = [new FileAppender("/tmp/log.txt")];
 ```
 
 For log formating **log4dart** supports many of the same options as is known
@@ -58,7 +61,20 @@ from other loggers, such as:
  * **n** Output the name of the logger that recorded the log
  * **x** Output the context of the logger
 
-For more information see the **TestRunner.dart** class in the **test** folder
+Log4Dart defaults to logging to the console but also supports various appenders 
+
+  * **ConsoleAppender** Appender that logs to the console
+  * **FileAppender** Appender that logs to a file
+  * **StringAppender** Appender that logs to a string buffer 
+
+appenders are also configured through the **LoggerFactory.config** interface 
+
+```
+// Use a file appender for a specifc logger
+LoggerFactory.config["OtherClass"].appenders = [new FileAppender("/tmp/log.txt")];
+```
+
+to get output in multiple places, just add multiple appenders to the appenders list.
 
 
 Diagnostic support
