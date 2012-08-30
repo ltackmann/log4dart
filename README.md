@@ -10,6 +10,11 @@ Using log4dart
 --------------
 To use Log4Dart add the following to your **pubspec.yaml** file
 
+```
+dependencies:
+  log4dart:
+    git: git://github.com/Solvr/log4dart.git
+```
 
 now install it by executing **pub install** and in your Dart program add the import
 
