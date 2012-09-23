@@ -8,7 +8,7 @@
 #import("dart:io");
 #import("log4dart.dart");
 
-#source("lib/appenders/file_appender.dart");
+#source("appenders/file_appender.dart");
 
 /**
  * Appender that logs to a file
