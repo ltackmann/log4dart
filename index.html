@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Log4dart : Powerful and extensible logger for dart." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Log4dart</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/financeCoding/log4dart">View on GitHub</a>
+
+          <h1 id="project_title">Log4dart</h1>
+          <h2 id="project_tagline">Powerful and extensible logger for dart.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/financeCoding/log4dart/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/financeCoding/log4dart/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Log4Dart</h1>
+
+<p><strong>Log4Dart</strong> is a powerful and extensible logger for Dart inspired by <a href="http://www.slf4j.org/">Slf4J</a>. 
+It supports logging at ERROR, WARN, INFO and DEBUG levels and has easy support for
+configuring specific appenders and logging formats. It also supports a nested
+diagnostic context that allows you to eassly make session specific log traces
+accross deep and recursive calls. </p>
+
+<h2>Using log4dart</h2>
+
+<p>To use Log4Dart add the following to your <strong>pubspec.yaml</strong> file</p>
+
+<pre><code>dependencies:
+  log4dart:
+    git: git://github.com/Solvr/log4dart.git
+</code></pre>
+
+<p>now install it by executing <strong>pub install</strong> and in your Dart program add the import</p>
+
+<pre><code>#import("package:log4dart/log4dart.dart");
+</code></pre>
+
+<p>Now you are ready to use <strong>log4dart</strong>. The example below shows you how
+to use it in your code.</p>
+
+<pre><code>class MyClass {
+  MyClass()
+    : _logger = LoggerFactory.getLogger("MyClass");
+
+  someMethod() {
+    _logger.info("a info message");
+  }
+
+  final Logger _logger;
+}
+</code></pre>
+
+<h2>Log configuration</h2>
+
+<p>The logger is configured through the <strong>LogConfig</strong> API that can be accessed
+by logger name or wildcard via the <strong>LoggerFactory.config["logger-name"]</strong>
+handle. Below are some examples: </p>
+
+<pre><code>// Disable info for all loggers 
+LoggerFactory.config["*"].infoEnabled = false;
+
+// Set the default logging format for all loggers
+LoggerFactory.config["*"].logFormat = "[%d] %c %n:%x %m";
+
+// Override logging levels for specifc loggers
+LoggerFactory.config["MyClass"].debugEnabled = false;
+LoggerFactory.config["MyClass"].infoEnabled = true;
+</code></pre>
+
+<p>For log formating <strong>log4dart</strong> supports many of the same options as is known
+from other loggers, such as:</p>
+
+<ul>
+<li>
+<strong>c</strong> Output the level (category) of the logging event</li>
+<li>
+<strong>d</strong> Output the date when the log message was recorded</li>
+<li>
+<strong>m</strong> Output the actual logging message</li>
+<li>
+<strong>n</strong> Output the name of the logger that recorded the log</li>
+<li>
+<strong>x</strong> Output the context of the logger</li>
+</ul><p>Log4Dart defaults to logging to the console but also supports various appenders </p>
+
+<ul>
+<li>
+<strong>ConsoleAppender</strong> Appender that logs to the console</li>
+<li>
+<strong>FileAppender</strong> Appender that logs to a file</li>
+<li>
+<strong>StringAppender</strong> Appender that logs to a string buffer </li>
+</ul><p>appenders are also configured through the <strong>LoggerFactory.config</strong> interface </p>
+
+<pre><code>// Use a file appender for a specifc logger
+LoggerFactory.config["OtherClass"].appenders = [new FileAppender("/tmp/log.txt")];
+</code></pre>
+
+<p>to get output in multiple places, just add multiple appenders to the appenders list.</p>
+
+<h2>Diagnostic support</h2>
+
+<p>The logger supports nested diagnostic contexts which can be used to
+track application state like this</p>
+
+<pre><code>logger.putContext("context-name", "context-message");
+try {
+  // log messages from now gets added a context-message
+  :
+  logger.debug("something important happend");
+} finally {
+  // stop logging with context-message
+  logger.removeContext("context-name");
+}
+</code></pre>
+
+<p>A running example of this can be seen in the <strong>ContextLogTest.dart</strong> class in the <strong>test</strong> folder.</p>
+
+<h2>TODO</h2>
+
+<p>Some missing stuff (feel free to add more):</p>
+
+<ol>
+<li>Generate DartDoc for Logger and Appender interface</li>
+<li>Create a Dart version of <strong>sprintf</strong> and use it for implementing the formatters </li>
+<li>When reflection arrives in Dart add ability to show the class/line where the log message originated</li>
+</ol><p>feel free to send in patched for these (or other features you miss).</p>
+
+<h2>License</h2>
+
+<p>BSD License (Same as Dart itself). See LICENSE file.  </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Log4dart maintained by <a href="https://github.com/financeCoding">financeCoding</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
