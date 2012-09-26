@@ -1,6 +1,6 @@
 name: log4dart
 version: 1.0.0 
-author: Lars Tackmann <lars@solvr.io>, Adam Singer <adam@solvr.io>
+authors: [Lars Tackmann <lars@solvr.io>, Adam Singer <adam@solvr.io>]
 homepage: https://github.com/Solvr/log4dart
 description: >
   Logging Facade for Dart or (log4dart) serves as a simple facade or abstraction 
