@@ -3,8 +3,8 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-import "package:log4dart/log4dart.dart";
-import "package:log4dart/file_appender.dart";
+import "../lib/log4dart.dart";
+import "../lib/file_appender.dart";
 
 part "context_log_test.dart";
 part "simple_log_test.dart";

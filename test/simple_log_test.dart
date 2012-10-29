@@ -11,7 +11,7 @@ class SimpleLogTest {
 
     _logger.warn("a warning");
 
-    _logger.error("a error");
+    _logger.errorFormat("%s %s %s", ["a", "error", "message"]);
   }
 
   final Logger _logger;

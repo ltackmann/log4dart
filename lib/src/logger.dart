@@ -19,7 +19,7 @@ abstract class Logger {
   /**
    * Log a message at the DEBUG level according to the specified format and argument.
    */
-  debugFormat(String format, List args);
+  debugFormat(String format, var args);
 
   /**
    * Log a message at the ERROR level.
@@ -29,7 +29,7 @@ abstract class Logger {
   /**
    * Log a message at the ERROR level according to the specified format and argument.
    */
-  errorFormat(String format, List args);
+  errorFormat(String format, var args);
 
   /**
    * Log a message at the INFO level.
@@ -39,7 +39,7 @@ abstract class Logger {
   /**
    * Log a message at the INFO level according to the specified format and argument.
    */
-  infoFormat(String format, List args);
+  infoFormat(String format, var args);
 
   /**
    * Log a message at the WARN level.
@@ -49,7 +49,7 @@ abstract class Logger {
   /**
    * Log a message at the WARN level according to the specified format and argument.
    */
-  warnFormat(String format, List args);
+  warnFormat(String format, var args);
 
   /**
    * Is the logger instance enabled for the DEBUG level?

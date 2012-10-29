@@ -1,8 +1,9 @@
 name: log4dart
-version: 1.0.0 
-authors: [Lars Tackmann <lars@solvr.io>, Adam Singer <adam@solvr.io>]
+author: [Lars Tackmann <lars@solvr.io>, Adam Singer <adam@solvr.io>]
 homepage: https://github.com/Solvr/log4dart
 description: >
-  Logging Facade for Dart or (log4dart) serves as a simple facade or abstraction 
-  for various logging frameworks, it offers powerful features such as multiple 
-  appenders, diagnostic context and configurable formatting.  
+  A powerful logger for Dart with support for multiple appenders, 
+  diagnostic context and configurable formatting. 
+version: 1.1.0   
+dependencies:
+  sprintf: any

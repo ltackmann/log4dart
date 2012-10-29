@@ -2,9 +2,9 @@ Log4Dart
 ========
 **Log4Dart** is a powerful and extensible logger for Dart inspired by [Slf4J][slf4j]. 
 It supports logging at ERROR, WARN, INFO and DEBUG levels and has easy support for
-configuring specific appenders and logging formats. It also supports a nested
-diagnostic context that allows you to eassly make session specific log traces
-accross deep and recursive calls. 
+configuring appenders and logging formats. It also supports a nested diagnostic 
+context that allows you to eassly make session specific log traces accross 
+deep calls. 
 
 Using log4dart
 --------------
@@ -12,15 +12,14 @@ To use Log4Dart add the following to your **pubspec.yaml** file
 
 ```
 dependencies:
-  log4dart:
-    git: git://github.com/Solvr/log4dart.git
+  log4dart: any
 ```
 
 now install it by executing **pub install** and in your Dart program add the import
 
 
 ```
-#import("package:log4dart/log4dart.dart");
+import "package:log4dart/log4dart.dart";
 ```
 
 Now you are ready to use **log4dart**. The example below shows you how
@@ -33,6 +32,8 @@ class MyClass {
 
   someMethod() {
     _logger.info("a info message");
+    
+    _logger.warnFormat("%s %s", ["a warning message", "formated using c's sprintf syntax"]);
   }
   
   final Logger _logger;
@@ -99,7 +100,7 @@ try {
 }
 ```
 
-A running example of this can be seen in the **ContextLogTest.dart** class in the **test** folder.
+A running example of this can be seen in the **context_log_test.dart** class in the **test** folder.
 
 TODO
 ----

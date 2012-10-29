@@ -29,7 +29,7 @@ class LoggerImpl implements Logger {
      if(debugEnabled) _append(message, LogLevel.DEBUG);
    }
 
-   debugFormat(String format, List args) {
+   debugFormat(String format, var args) {
      if(debugEnabled) debug(_format(format, args));
    }
 
@@ -37,7 +37,7 @@ class LoggerImpl implements Logger {
      if(errorEnabled) _append(message, LogLevel.ERROR);
    }
 
-   errorFormat(String format, List args) {
+   errorFormat(String format, var args) {
      if(errorEnabled) error(_format(format, args));
    }
 
@@ -45,7 +45,7 @@ class LoggerImpl implements Logger {
      if(infoEnabled) _append(message, LogLevel.INFO);
    }
 
-   infoFormat(String format, List args) {
+   infoFormat(String format, var args) {
      if(infoEnabled) info(_format(format, args));
    }
 
@@ -53,7 +53,7 @@ class LoggerImpl implements Logger {
      if(warnEnabled) _append(message, LogLevel.WARN);
    }
 
-   warnFormat(String format, List args) {
+   warnFormat(String format, var args) {
      if(warnEnabled) warn(_format(format, args));
    }
 
@@ -79,9 +79,7 @@ class LoggerImpl implements Logger {
      _config.appenders.forEach((Appender appender) => appender.doAppend(formattetMessage));
    }
 
-   String _format(String format, List args) {
-     throw new UnsupportedOperationException("TODO waiting for printf support in Dart Strings");
-   }
+   String _format(String format, var args) => sprintf(format, args);
 
    bool debugEnabled;
    bool errorEnabled;
