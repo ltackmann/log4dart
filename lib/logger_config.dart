@@ -1,6 +1,8 @@
+part of log4dart;
+
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
-// This open source software is governed by the license terms 
+// This open source software is governed by the license terms
 // specified in the LICENSE file
 
 class LoggerConfig {
@@ -9,8 +11,8 @@ class LoggerConfig {
   bool infoEnabled;
   bool warnEnabled;
   String logFormat;
-  List<Appender> appenders;  
-  
+  List<Appender> appenders;
+
   String toString() {
     var str = """
       debugEnabled: $debugEnabled\n
@@ -21,7 +23,7 @@ class LoggerConfig {
     """;
     return str;
   }
-  
+
   LoggerConfig clone() {
     LoggerConfig cfg = new LoggerConfig();
     cfg.debugEnabled = debugEnabled;

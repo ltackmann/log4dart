@@ -1,25 +1,27 @@
+part of log4dart;
+
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
-// This open source software is governed by the license terms 
+// This open source software is governed by the license terms
 // specified in the LICENSE file
 
 /**
  * Utility class for producing Loggers for various logging implementations
- * 
+ *
  * Unless otherwise specified it defaults to the bundled LoggerImpl
  */
 class LoggerFactory {
   /**
    * Assign a [LoggerBuilder] to this factory. Builders are functions that takes a name and a config
-   * and creates a instance of the actual [Logger] implementations. 
-   * 
-   * Overriding the builder is only needed in the rare instances where you need to use your own 
-   * logger implementation rather than the default 
+   * and creates a instance of the actual [Logger] implementations.
+   *
+   * Overriding the builder is only needed in the rare instances where you need to use your own
+   * logger implementation rather than the default
    */
   static set logBuilder(LoggerBuilder builder) {
     _builder = builder;
   }
-  
+
   static Logger getLogger(String name) {
     if(_builder == null) {
       // no builder exists, default to LoggerImpl
@@ -36,14 +38,14 @@ class LoggerFactory {
     Expect.isNotNull(logger);
     return logger;
   }
-  
+
   static LoggerConfigMap get config {
     if(_configMap == null) {
       _configMap = new LoggerConfigMap();
     }
     return _configMap;
   }
-  
+
   static LoggerConfigMap _configMap;
   static Map<String, Logger> _loggerCache;
   static LoggerFactory _instance;

@@ -105,7 +105,7 @@ TODO
 ----
 Some missing stuff (feel free to add more):
 
-  1. Generate DartDoc for Logger and Appender interface
+  1. Generate DartDoc for Logger and Appender classes
   1. Create a Dart version of **sprintf** and use it for implementing the formatters 
   1. When reflection arrives in Dart add ability to show the class/line where the log message originated
 
