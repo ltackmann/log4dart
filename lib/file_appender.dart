@@ -8,6 +8,6 @@ library log4dart_file;
 import "dart:io";
 import "log4dart.dart";
 
-part "lib/appenders/file_appender.dart";
+part "src/appenders/file_appender.dart";
 
 
