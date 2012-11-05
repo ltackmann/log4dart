@@ -20,10 +20,10 @@ install it by executing **pub install** and in your Dart program add one of the 
 
 ```
 // for client side logging (works when compiled to JS)
-import "package:log4dart/log4dart.dart";
+import "package:log4dart/log4dart_browser.dart";
 
 // for VM logging, allows you to log to files (does not compile to JS) 
-import "package:log4dart/log4dart_vm.dart";
+import "package:log4dart/log4dart_console.dart";
 ```
 
 Now you are ready to use **log4dart**. The example below shows you how

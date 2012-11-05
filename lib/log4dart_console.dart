@@ -11,8 +11,8 @@
 library log4dart_file;
 
 import "dart:io";
-import "log4dart.dart";
-export "log4dart.dart";
+import "log4dart_browser.dart";
+export "log4dart_browser.dart";
 
 part "src/appenders/file_appender.dart";
 
