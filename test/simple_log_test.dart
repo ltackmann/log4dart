@@ -3,6 +3,8 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
+part of test_runner;
+
 class SimpleLogTest {
   SimpleLogTest(): _logger = LoggerFactory.getLogger("SimpleLogTest") {
     _logger.debug("a debug message");

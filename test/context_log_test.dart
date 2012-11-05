@@ -3,6 +3,8 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
+part of test_runner;
+
 class ContextLogTest {
   ContextLogTest(): _logger = LoggerFactory.getLogger("ContextLogTest") {
     _logger.putContext("context", "context-message");

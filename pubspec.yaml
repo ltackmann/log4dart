@@ -8,4 +8,4 @@ description: >
   diagnostic context and configurable formatting. 
 version: 1.1.0   
 dependencies:
-  sprintf: any
+  sprintf: ">=1.0.0-alpha1 <2.0.0"
