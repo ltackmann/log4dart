@@ -16,7 +16,6 @@ part "src/logger_factory.dart";
 part "src/logger_impl.dart";
 part "src/logger_config.dart";
 part "src/logger_config_map.dart";
-part "src/log_format_reader.dart";
 part "src/log_level.dart";
 part "src/log_record.dart";
 part "src/log_record_formatter.dart";

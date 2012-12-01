@@ -6,7 +6,7 @@
 /**
  * Logger that depends on VM functionality (file access). 
  * 
- * Use log4dart.dart if you need client access
+ * Use [log4dart.dart] if you need client access
  */ 
 library log4dart_file;
 

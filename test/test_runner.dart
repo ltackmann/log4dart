@@ -3,6 +3,8 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
+library log4dart_test;
+
 import "../lib/log4dart_vm.dart";
 
 part "context_log_test.dart";

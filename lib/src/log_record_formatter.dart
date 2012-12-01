@@ -1,17 +1,13 @@
-part of log4dart;
-
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
+part of log4dart;
+
 /**
- * - c: Output the level (category) of the logging event
- * - d: Output the date when the log message was recorded
- * - m: Output the actual logging message
- * - n: Output the name of the logger that recorded the log
- * - x: Output the context of the logger
- */
+ * A log record formatter for the given log format
+ */ 
 class LogRecordFormatter {
   LogRecordFormatter(String _logFormat)
     : recordContext = false,
@@ -43,7 +39,7 @@ class LogRecordFormatter {
           recordContext = true;
           _parseContext();
         } else {
-          throw new IllegalArgumentException("illegal format ${_currentChar} in ${_formatReader.toString()}");
+          throw new FormatException("illegal format ${_currentChar} in ${_formatReader.toString()}");
         }
       } else {
         _parseText();
@@ -95,6 +91,9 @@ class LogRecordFormatter {
 
   bool _hasMore() => _peek() != "";
 
+  /**
+   * Returns the formatted version of a [LogRecord]
+   */ 
   String format(LogRecord record) {
     var res = "";
     _formatters.forEach((_RecordFormatter formatter) => res = res.concat(formatter(record)));
@@ -107,5 +106,41 @@ class LogRecordFormatter {
   final List<_RecordFormatter> _formatters;
 }
 
+/**
+ * Signature for the log record formatter 
+ */ 
 typedef String _RecordFormatter(LogRecord record);
+
+/**
+ * Reads format strings one token at a time
+ */ 
+class _LogFormatReader {
+  factory _LogFormatReader(String formatString) {
+    Expect.isFalse(formatString == null && formatString.isEmpty, "log format cannot be null or empty");
+    return new _LogFormatReader._internal(formatString, formatString.length);
+  }
+
+  _LogFormatReader._internal(this._formatString, this._formatLength) {
+    _position = 0;
+  }
+
+  String peek(int distance) {
+    final int ahead = _position+distance;
+    if (ahead >= _formatLength) {
+      return "";
+    }
+    return _formatString.substring(ahead, ahead+_offset);
+  }
+
+  advance() {
+    _position += _offset;
+  }
+
+  String toString() => _formatString;
+
+  final int _offset = 1;
+  final String _formatString;
+  final int _formatLength;
+  int _position;
+}
 

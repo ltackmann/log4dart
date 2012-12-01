@@ -4,8 +4,8 @@ authors:
 - Adam Singer <adam@solvr.io>
 homepage: https://github.com/Solvr/log4dart
 description: >
-  A powerful logger for Dart with support for multiple appenders, 
+  A powerful logging library for Dart with support for multiple appenders, 
   diagnostic context and configurable formatting. 
-version: 1.1.0   
+version: 1.2.0   
 dependencies:
-  sprintf: any
+  sprintf: ">=1.0.1"

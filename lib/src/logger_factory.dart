@@ -1,14 +1,14 @@
-part of log4dart;
-
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
+part of log4dart;
+
 /**
  * Utility class for producing Loggers for various logging implementations
  *
- * Unless otherwise specified it defaults to the bundled LoggerImpl
+ * Unless otherwise specified it defaults to the bundled [LoggerImpl]
  */
 class LoggerFactory {
   /**
