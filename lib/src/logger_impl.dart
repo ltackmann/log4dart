@@ -72,7 +72,7 @@ class LoggerImpl implements Logger {
    void _append(String message, LogLevel level) {
      String ctx = "";
      if(_formatter.recordContext) {
-      _context.forEach(f(k,v) => ctx = ctx.concat("$v:"));
+      _context.forEach((k,v) => ctx = ctx.concat("$v:"));
      }
      var logRecord = new LogRecord(message, level, name, ctx);
      var formattetMessage = _formatter.format(logRecord);
