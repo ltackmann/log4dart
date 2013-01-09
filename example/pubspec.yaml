@@ -1,0 +1,4 @@
+name: log4dart_example
+description: Log4Dart example
+dependencies:
+  log4dart: '>=1.2.1'
