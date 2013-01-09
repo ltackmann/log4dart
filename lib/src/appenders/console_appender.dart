@@ -8,7 +8,7 @@ part of log4dart;
 /**
  * Appender that logs to the console
  */
-class ConsoleAppender implements Appender {
+class ConsoleAppender extends Appender {
   void doAppend(String message) {
     print(message);
   }

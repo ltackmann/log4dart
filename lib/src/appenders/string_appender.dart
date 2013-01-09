@@ -8,18 +8,33 @@ part of log4dart;
 /**
  * Appender that logs to a [String]
  */
-class StringAppender implements Appender {
+class StringAppender extends Appender {
   StringAppender()
     : _stringBuffer = new StringBuffer();
 
   void doAppend(String message) {
     _stringBuffer.add(message);
+    _messageCount++;
   }
 
-  String get log => _stringBuffer.toString();
+  /**
+   * Content stored in appender
+   */
+  String get content => _stringBuffer.toString();
 
-  clearLog() => _stringBuffer.clear();
-
+  /**
+   * Clear the content
+   */
+  clear() {
+    _stringBuffer.clear();
+    _messageCount = 0;
+  }
+  
+  /**
+   * True when appender is empty
+   */
+  bool get isEmpty => content.isEmpty && messageCount == 0;
+  
   final StringBuffer _stringBuffer;
 }
 

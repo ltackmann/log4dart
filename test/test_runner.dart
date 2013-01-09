@@ -5,27 +5,12 @@
 
 library log4dart_test;
 
+import "package:unittest/unittest.dart";
 import "../lib/log4dart_vm.dart";
 
-part "context_log_test.dart";
-part "simple_log_test.dart";
+part "log_test.dart";
 
 main() {
-  // Disable info for all loggers
-  LoggerFactory.config["*"].infoEnabled = false;
-
-  // Set the default logging format for all loggers
-  LoggerFactory.config["*"].logFormat = "[%d] %c %n:%x %m";
-
-  // Set debug levels and format for specifc loggers
-  LoggerFactory.config["SimpleLogTest"].debugEnabled = false;
-  LoggerFactory.config["SimpleLogTest"].infoEnabled = true;
-
-  // Use a file appedender for a specifc logger
-  LoggerFactory.config["ContextLogTest"].appenders = [new FileAppender("/tmp/log.txt")];
-
-  // run tests
-  new SimpleLogTest();
-  new ContextLogTest();
+  new LogTest();
 }
 

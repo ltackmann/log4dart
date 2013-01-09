@@ -50,6 +50,8 @@ class LoggerFactory {
   static Map<String, Logger> _loggerCache;
   static LoggerFactory _instance;
   static LoggerBuilder _builder;
+  
+  // TODO get names of loggers and their config
 }
 
 /**
