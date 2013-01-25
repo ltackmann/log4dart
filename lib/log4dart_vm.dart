@@ -8,7 +8,7 @@
  * 
  * Use [log4dart.dart] if you need client access
  */ 
-library log4dart_file;
+library log4dart_vm;
 
 import "dart:io";
 import "log4dart.dart";
