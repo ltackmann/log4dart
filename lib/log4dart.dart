@@ -5,6 +5,8 @@
 
 library log4dart;
 
+import "dart:collection";
+
 //import "package:sprintf/sprintf.dart";
 
 part "src/appenders/console_appender.dart";
