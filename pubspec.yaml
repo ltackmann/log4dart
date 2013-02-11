@@ -1,5 +1,5 @@
 name: log4dart
-authors: "Lars Tackmann <lars@solvr.io>"
+author: Lars Tackmann <lars@solvr.io>
 homepage: https://github.com/Solvr/log4dart
 description: >
   A powerful logging library for Dart with support for multiple appenders, 
