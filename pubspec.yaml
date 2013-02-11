@@ -1,10 +1,10 @@
 name: log4dart
-authors: ["Lars Tackmann <lars@solvr.io>", "Adam Singer <adam@solvr.io>"]
+authors: "Lars Tackmann <lars@solvr.io>"
 homepage: https://github.com/Solvr/log4dart
 description: >
   A powerful logging library for Dart with support for multiple appenders, 
   diagnostic context and configurable formatting. 
-version: 1.2.6   
+version: 1.2.7   
 dependencies:
   unittest: any
   #sprintf: ">=1.0.1 <2.0.0"
