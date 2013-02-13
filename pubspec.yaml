@@ -1,11 +1,8 @@
 name: log4dart
+version: 1.2.8
 author: Lars Tackmann <lars@solvr.io>
-homepage: https://github.com/Solvr/log4dart
-description: >
-  A powerful logging library for Dart with support for multiple appenders, 
-  diagnostic context and configurable formatting. 
-version: 1.2.7   
+description: A powerful logging library for Dart with support for multiple appenders,  diagnostic context and configurable formatting.
+homepage: https://github.com/ltackmann/log4dart
 dependencies:
   unittest: any
-  #sprintf: ">=1.0.1 <2.0.0"
-  
+  sprintf: '>=1.0.3 <2.0.0'

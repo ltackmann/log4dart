@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/github.com/ltackmann/log4dart/status.png)](https://drone.io/github.com/ltackmann/log4dart/latest)
+
 Log4Dart
 ========
 **Log4Dart** is a powerful and extensible logger for Dart inspired by [Slf4J][slf4j]. 

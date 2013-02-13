@@ -79,8 +79,7 @@ class LoggerImpl implements Logger {
      _config.appenders.forEach((Appender appender) => appender.doAppend(formattetMessage));
    }
 
-   String _format(String format, var args) => args.toString();
-   // TODO readd when sprintf is working again sprintf(format, args);
+   String _format(String format, var args) => sprintf(format, args);
 
    bool debugEnabled;
    bool errorEnabled;

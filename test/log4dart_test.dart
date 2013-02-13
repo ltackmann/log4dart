@@ -29,7 +29,7 @@ main() {
       expect(stringAppender.isEmpty, isTrue, reason:"debug is disabled by default");
       expect(stringAppender.messageCount, equals(0), reason:"no log message should be recorded");
       
-      logger.info("a info message");
+      logger.infoFormat("a %s message", ["info"]);
       expect(stringAppender.content, matches(r"^\[.*\] INFO DefaultLogger: a info message"), reason:"info is enabled by default");
       
       logger.warn("a warn message");
@@ -46,7 +46,7 @@ main() {
       expect(stringAppender.isEmpty, isTrue, reason:"info is disabled by override");
       expect(stringAppender.messageCount, equals(0), reason:"no log message should be recorded");
       
-      logger.debug("a debug message");
+      logger.debugFormat("a %s message", ["debug"]);
       expect(stringAppender.content, matches(r"DEBUG OverrideLogger: a debug message"), reason:"debug is enabled by override");
       
       logger.warn("a warn message");
