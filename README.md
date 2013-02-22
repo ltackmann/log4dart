@@ -31,7 +31,7 @@ to use it in your code.
 ```
 class MyClass {
   MyClass()
-    : _logger = LoggerFactory.getLogger("MyClass");
+    : _logger = LoggerFactory.getLogger(MyClass);
 
   someMethod() {
     _logger.info("a info message");
