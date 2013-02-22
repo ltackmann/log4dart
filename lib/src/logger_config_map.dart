@@ -9,7 +9,20 @@ class LoggerConfigMap {
   LoggerConfigMap()
     : _configs = new Map<String, LoggerConfig>();
 
-  LoggerConfig operator [](String loggerName) {
+  /**
+   * Get [LoggerConfig] for [Logger] named [loggerName]
+   */
+  LoggerConfig operator [](var loggerName) {
+    // TODO switch to fully qualified name when dart2js supports mirrors
+    if(loggerName is String) {
+      return _getLoggerConfig(loggerName);
+    } else if(loggerName is Type) {
+      return _getLoggerConfig(loggerName.toString());
+    }
+    throw new ArgumentError("unexpected type ${loggerName.runtimeType.toString()}");
+  }
+  
+  LoggerConfig _getLoggerConfig(String loggerName) {
     if(!_configs.containsKey(loggerName)) {
       if(!_configs.containsKey("*")) {
         var defaultConfig = new LoggerConfig();

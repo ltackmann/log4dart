@@ -22,7 +22,21 @@ class LoggerFactory {
     _builder = builder;
   }
 
-  static Logger getLogger(String name) {
+  /**
+   * Get a [Logger] named [loggerName]
+   */
+  static Logger getLogger(var loggerName) {
+    // TODO switch to fully qualified name when dart2js supports mirrors
+    // TODO this code is duplicated in [LoggerConfigMap] make a top level function for this
+    if(loggerName is String) {
+      return _getLogger(loggerName);
+    } else if(loggerName is Type) {
+      return _getLogger(loggerName.toString());
+    }
+    throw new ArgumentError("unexpected type ${loggerName.runtimeType.toString()}");
+  }
+  
+  static Logger _getLogger(String name) {
     if(_builder == null) {
       // no builder exists, default to LoggerImpl
       _builder = (n,c) => new LoggerImpl(n,c);
@@ -35,10 +49,13 @@ class LoggerFactory {
       _loggerCache[name] = _builder(name, loggerConfig);
     }
     Logger logger = _loggerCache[name];
-    Expect.isNotNull(logger);
+    assert(logger != null);
     return logger;
   }
-
+  
+  /**
+   * Access and configure the log subsystem
+   */
   static LoggerConfigMap get config {
     if(_configMap == null) {
       _configMap = new LoggerConfigMap();
@@ -50,8 +67,6 @@ class LoggerFactory {
   static Map<String, Logger> _loggerCache;
   static LoggerFactory _instance;
   static LoggerBuilder _builder;
-  
-  // TODO get names of loggers and their config
 }
 
 /**

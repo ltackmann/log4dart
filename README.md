@@ -2,11 +2,8 @@
 
 Log4Dart
 ========
-**Log4Dart** is a powerful and extensible logger for Dart inspired by [Slf4J][slf4j]. 
-It supports logging at ERROR, WARN, INFO and DEBUG levels and has easy support for
-configuring appenders and logging formats. It also supports a nested diagnostic 
-context that allows you to eassly make session specific log traces accross 
-deep calls. 
+Powerful logging library for Dart with support for multiple appenders, configurable formatting 
+and log tracing using diagnostic contexts. 
 
 Using log4dart
 --------------
@@ -17,11 +14,11 @@ dependencies:
   log4dart: any
 ```
 
-install it by executing **pub install** and in your Dart program add one of the imports
+and install it by executing **pub install**. Then in your Dart program add one of the imports
 
 
 ```
-// for client side logging (works when compiled to JS)
+// for client side logging (works both on the VM and when compiled to JS)
 import "package:log4dart/log4dart.dart";
 
 // for VM logging, allows you to log to files (does not compile to JS) 
@@ -45,6 +42,13 @@ class MyClass {
   final Logger _logger;
 }
 ```
+
+You can retrieve loggers using in one of these two ways
+
+ 1. LoggerFactory.getLogger("MyClass")
+ 1. LoggerFactory.getLogger(MyClass)
+ 
+In the last case the name of the logger will be the fully qualified name of the class.
 
 Log configuration
 -----------------

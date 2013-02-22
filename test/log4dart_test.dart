@@ -15,10 +15,11 @@ main() {
   LoggerFactory.config["*"].appenders = [stringAppender];
   
   group("basic logging -", () {
-    // Override settings for a logger to assert settings are used correctly
+    // Override settings for specific loggers so we can test that settings are used correctly
     LoggerFactory.config["OverrideLogger"].debugEnabled = true;
     LoggerFactory.config["OverrideLogger"].infoEnabled = false;
     LoggerFactory.config["OverrideLogger"].logFormat = "%c %n: %m";
+    LoggerFactory.config[Duration].debugEnabled = true;
     
     setUp(() => stringAppender.clear());
 
@@ -37,6 +38,17 @@ main() {
       
       logger.error("a error message");
       expect(stringAppender.content, matches(r".*\[.*\] ERROR DefaultLogger: a error message"), reason:"error is enabled by default");
+    });
+    
+    test("type configuration", () {
+      // get a logger named after the Duration type
+      var logger = LoggerFactory.getLogger(Duration);
+      
+      logger.debug("a debug message");
+      expect(stringAppender.content, matches(r"^\[.*\] DEBUG Duration: a debug message"), reason:"debug is enabled by override");
+      
+      logger.info("a info message");
+      expect(stringAppender.content, matches(r".*\[.*\] INFO Duration: a info message"), reason:"info is enabled by default");
     });
     
     test("configuration overrides", () {
