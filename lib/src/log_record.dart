@@ -9,13 +9,16 @@ part of log4dart;
  * A logging event
  */ 
 class LogRecord {
-  LogRecord(this.message, this.logLevel, this.loggerName, this.context)
-    : date = new Date.now();
-
-  final Date date;
-  final String message;
+  factory LogRecord(String message, LogLevel logLevel, String qualifiedLoggerName, String context) {
+    var i = qualifiedLoggerName.indexOf(".");
+    String simpleLoggerName = (i > -1) ? qualifiedLoggerName.slice(i+1) : qualifiedLoggerName; 
+    return new LogRecord._internal(message, logLevel, context, new DateTime.now(), simpleLoggerName, qualifiedLoggerName);
+  }
+  
+  LogRecord._internal(this.message, this.logLevel, this.context, this.date, this.simpleLoggerName, this.qualifiedLoggerName);
+  
+  final DateTime date;
   final LogLevel logLevel;
-  final String loggerName;
-  final String context;
+  final String message, context, simpleLoggerName, qualifiedLoggerName;
 }
 

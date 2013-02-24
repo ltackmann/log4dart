@@ -3,6 +3,8 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
+library log4dart_test;
+
 import "package:unittest/unittest.dart";
 import "../lib/log4dart_vm.dart";
 
@@ -11,7 +13,7 @@ main() {
   var stringAppender = new StringAppender();
   // Global logger defaults
   LoggerFactory.config["*"].debugEnabled = false;
-  LoggerFactory.config["*"].logFormat = "[%d] %c %n:%x %m";
+  LoggerFactory.config["*"].logFormat = "[%d] %c %N:%x %m";
   LoggerFactory.config["*"].appenders = [stringAppender];
   
   group("basic logging -", () {
@@ -19,7 +21,7 @@ main() {
     LoggerFactory.config["OverrideLogger"].debugEnabled = true;
     LoggerFactory.config["OverrideLogger"].infoEnabled = false;
     LoggerFactory.config["OverrideLogger"].logFormat = "%c %n: %m";
-    LoggerFactory.config[Duration].debugEnabled = true;
+    LoggerFactory.config["log4dart_test.MyClass"].debugEnabled = true;
     
     setUp(() => stringAppender.clear());
 
@@ -42,13 +44,13 @@ main() {
     
     test("type configuration", () {
       // get a logger named after the Duration type
-      var logger = LoggerFactory.getLogger(Duration);
+      var logger = LoggerFactory.getLoggerFor(MyClass);
       
       logger.debug("a debug message");
-      expect(stringAppender.content, matches(r"^\[.*\] DEBUG Duration: a debug message"), reason:"debug is enabled by override");
+      expect(stringAppender.content, matches(r"^\[.*\] DEBUG log4dart_test.MyClass: a debug message"), reason:"debug is enabled by override");
       
       logger.info("a info message");
-      expect(stringAppender.content, matches(r".*\[.*\] INFO Duration: a info message"), reason:"info is enabled by default");
+      expect(stringAppender.content, matches(r".*\[.*\] INFO log4dart_test.MyClass: a info message"), reason:"info is enabled by default");
     });
     
     test("configuration overrides", () {
@@ -96,3 +98,5 @@ main() {
     // TODO test that log messages are also written to file
   });
 }
+
+class MyClass { }

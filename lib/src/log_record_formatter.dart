@@ -17,6 +17,7 @@ class LogRecordFormatter {
     _parseLogFormat();
   }
 
+  // TODO parse fullname log configurations like logback http://logback.qos.ch/manual/layouts.html
   _parseLogFormat() {
     while(_hasMore()) {
       _currentChar = _peek();
@@ -34,7 +35,9 @@ class LogRecordFormatter {
         } else if(_currentChar == "m") {
           _parseMessage();
         } else if(_currentChar == "n") {
-          _parseName();
+          _parseSimpleName();
+        } else if(_currentChar == "N") {
+          _parseQualifiedName();
         } else if(_currentChar == "x") {
           recordContext = true;
           _parseContext();
@@ -68,8 +71,12 @@ class LogRecordFormatter {
     _formatters.add((LogRecord record) => record.message);
   }
 
-  _parseName() {
-    _formatters.add((LogRecord record) => record.loggerName);
+  _parseQualifiedName() {
+    _formatters.add((LogRecord record) => record.qualifiedLoggerName);
+  }
+  
+  _parseSimpleName() {
+    _formatters.add((LogRecord record) => record.simpleLoggerName);
   }
 
   _parseContext() {

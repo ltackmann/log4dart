@@ -28,13 +28,13 @@ class LoggerConfig {
     return cfg;
   }
   
-  ///
+  /// when true the debug log level is enabled
   bool debugEnabled;
-  ///
+  /// when true the error log level is enabled
   bool errorEnabled;
-  ///
+  /// when true the info log level is enabled
   bool infoEnabled;
-  ///
+  /// when true the warning log level is enabled
   bool warnEnabled;
   
   /// * **c** Output the level (category) of the logging event

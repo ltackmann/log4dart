@@ -6,6 +6,7 @@
 library log4dart;
 
 import "dart:collection";
+import "dart:mirrors";
 
 import "package:sprintf/sprintf.dart";
 

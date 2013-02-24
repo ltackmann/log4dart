@@ -31,7 +31,7 @@ to use it in your code.
 ```
 class MyClass {
   MyClass()
-    : _logger = LoggerFactory.getLogger(MyClass);
+    : _logger = LoggerFactory.getLoggerFor(MyClass);
 
   someMethod() {
     _logger.info("a info message");
@@ -45,10 +45,10 @@ class MyClass {
 
 You can retrieve loggers using in one of these two ways
 
- 1. LoggerFactory.getLogger("MyClass")
- 1. LoggerFactory.getLogger(MyClass)
+ 1. LoggerFactory.getLoggerFor(MyClass) - uses fully qualified name of MyClass
+ 1. LoggerFactory.getLogger("MyClass") - uses custom name "MyClass"
  
-In the last case the name of the logger will be the fully qualified name of the class.
+Where the qualified name is the library name and type name concatenated together.  
 
 Log configuration
 -----------------
@@ -71,11 +71,12 @@ LoggerFactory.config["MyClass"].infoEnabled = true;
 For log formating **log4dart** supports many of the same options as is known
 from other loggers, such as:
 
- * **c** Output the level (category) of the logging event
- * **d** Output the date when the log message was recorded
- * **m** Output the actual logging message
- * **n** Output the name of the logger that recorded the log
- * **x** Output the context of the logger
+ * **c** the level (category) of the logging event
+ * **d** the date when the log message was recorded
+ * **m** the actual logging message
+ * **n** the simple name of the logger that recorded the log
+ * **N** the qualified name of the logger that recorded the log
+ * **x** the context of the logger
 
 Log4Dart defaults to logging to the console but also supports various appenders 
 

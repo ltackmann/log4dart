@@ -23,20 +23,29 @@ class LoggerFactory {
   }
 
   /**
-   * Get a [Logger] named [loggerName]
+   * Get a [Logger] with the fully qualified name of [type]
+   * 
+   * WARNING currently this method is very expensive due to lack of features in dart:mirrors
    */
-  static Logger getLogger(var loggerName) {
-    // TODO switch to fully qualified name when dart2js supports mirrors
-    // TODO this code is duplicated in [LoggerConfigMap] make a top level function for this
-    if(loggerName is String) {
-      return _getLogger(loggerName);
-    } else if(loggerName is Type) {
-      return _getLogger(loggerName.toString());
-    }
-    throw new ArgumentError("unexpected type ${loggerName.runtimeType.toString()}");
+  static Logger getLoggerFor(Type type) {
+    // TODO remove this very expensive lookup method once dart:mirrors allows you to reflect on type
+    var im = reflect(type);
+    var typeName = im.reflectee.toString();
+    var loggerName;
+    currentMirrorSystem().libraries.forEach((k,v) {
+      if(!k.startsWith("dart") && v.classes.containsKey(typeName)) {
+        loggerName = "${k}.${typeName}";
+        return;
+      }
+    });
+    assert(loggerName != null);
+    return getLogger(loggerName);
   }
   
-  static Logger _getLogger(String name) {
+  /**
+   * Get a [Logger] named [loggerName]
+   */
+  static Logger getLogger(String loggerName) {
     if(_builder == null) {
       // no builder exists, default to LoggerImpl
       _builder = (n,c) => new LoggerImpl(n,c);
@@ -44,11 +53,11 @@ class LoggerFactory {
     if(_loggerCache == null) {
       _loggerCache = new Map<String, Logger>();
     }
-    if(!_loggerCache.containsKey(name)) {
-      var loggerConfig = config[name];
-      _loggerCache[name] = _builder(name, loggerConfig);
+    if(!_loggerCache.containsKey(loggerName)) {
+      var loggerConfig = config[loggerName];
+      _loggerCache[loggerName] = _builder(loggerName, loggerConfig);
     }
-    Logger logger = _loggerCache[name];
+    Logger logger = _loggerCache[loggerName];
     assert(logger != null);
     return logger;
   }
