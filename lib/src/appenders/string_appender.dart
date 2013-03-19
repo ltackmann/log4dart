@@ -13,7 +13,7 @@ class StringAppender extends Appender {
     : _stringBuffer = new StringBuffer();
 
   void doAppend(String message) {
-    _stringBuffer.add(message);
+    _stringBuffer.write(message);
     _messageCount++;
   }
 
