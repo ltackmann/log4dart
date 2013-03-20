@@ -9,7 +9,7 @@ Using log4dart
 --------------
 To use Log4Dart add the following to your **pubspec.yaml** file
 
-```
+```yaml
 dependencies:
   log4dart: any
 ```
@@ -17,7 +17,7 @@ dependencies:
 and install it by executing **pub install**. Then in your Dart program add one of the imports
 
 
-```
+```dart
 // for client side logging (works both on the VM and when compiled to JS)
 import "package:log4dart/log4dart.dart";
 
@@ -28,25 +28,22 @@ import "package:log4dart/log4dart_vm.dart";
 Now you are ready to use **log4dart**. The example below shows you how
 to use it in your code.
 
-```
+```dart
 class MyClass {
-  MyClass()
-    : _logger = LoggerFactory.getLoggerFor(MyClass);
+  final _logger = LoggerFactory.getLoggerFor(MyClass);
 
   someMethod() {
     _logger.info("a info message");
     
     _logger.warnFormat("%s %s", ["a warning message", "formated using c's sprintf syntax"]);
   }
-  
-  final Logger _logger;
 }
 ```
 
 You can retrieve loggers using in one of these two ways
 
- 1. LoggerFactory.getLoggerFor(MyClass) - uses fully qualified name of MyClass
- 1. LoggerFactory.getLogger("MyClass") - uses custom name "MyClass"
+ 1. **LoggerFactory.getLoggerFor(MyClass)** - create logger with the fully qualified name of MyClass
+ 1. **LoggerFactory.getLogger("MyClass")** - create logger with the name "MyClass"
  
 Where the qualified name is the library name and type name concatenated together.  
 
@@ -56,7 +53,7 @@ The logger is configured through the **LogConfig** API that can be accessed
 by logger name or wildcard via the **LoggerFactory.config["logger-name"]**
 handle. Below are some examples: 
 
-```
+```dart
 // Disable info for all loggers 
 LoggerFactory.config["*"].infoEnabled = false;
   
@@ -86,7 +83,7 @@ Log4Dart defaults to logging to the console but also supports various appenders
 
 appenders are also configured through the **LoggerFactory.config** interface 
 
-```
+```dart
 // Use a file appender for a specifc logger
 LoggerFactory.config["OtherClass"].appenders = [new FileAppender("/tmp/log.txt")];
 ```
@@ -97,9 +94,9 @@ to get output in multiple places, just add multiple appenders to the appenders l
 Diagnostic support
 ------------------
 The logger supports nested diagnostic contexts which can be used to
-track application state like this
+trace application state
 
-```
+```dart
 logger.putContext("context-name", "context-message");
 try {
   // log messages from now gets added a context-message
@@ -111,20 +108,6 @@ try {
 }
 ```
 
-A running example of this can be seen in the **context_log_test.dart** class in the **test** folder.
-
-TODO
-----
-Some missing stuff (feel free to add more):
-
-  1. Generate DartDoc for Logger and Appender classes
-  1. Create a Dart version of **sprintf** and use it for implementing the formatters 
-  1. When reflection arrives in Dart add ability to show the class/line where the log message originated
-
-feel free to send in patched for these (or other features you miss).
-
-License
--------
-BSD License (Same as Dart itself). See LICENSE file.  
+See the **log4dart_test.dart** class in the **test** folder for a full example of using the diagnostic context.
 
 [slf4j]: http://www.slf4j.org/
