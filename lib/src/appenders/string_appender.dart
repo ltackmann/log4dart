@@ -7,7 +7,7 @@ part of log4dart;
 /** Appender that logs to a [String] */
 class StringAppender extends Appender {
   @override
-  _doAppend(String message) {
+  doAppend(String message) {
     _stringBuffer.write(message);
   }
 

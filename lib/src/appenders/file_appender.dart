@@ -15,7 +15,7 @@ class FileAppender extends Appender {
   }
 
   @override
-  _doAppend(String message) {
+  doAppend(String message) {
     // TODO inneficient to open file for each log message, however I am not aware of
     // any ways to register methods to be exectued when the program shuts down
     File file = new File(_path);

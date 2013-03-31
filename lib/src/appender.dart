@@ -8,7 +8,7 @@ part of log4dart;
 abstract class Appender {
   /** Log a message */
   append(String message) {
-    _doAppend(message);
+    doAppend(message);
     _lastMessage = message;
     _messageCount++;
   }
@@ -19,8 +19,8 @@ abstract class Appender {
   /** The last message appended */
   String get lastMessage => _lastMessage;
   
-  /* method that does the actual appending, implemented by each concrete appender */
-  _doAppend(String message);
+  /** method that does the actual appending, implemented by each concrete appender */
+  doAppend(String message);
   
   int _messageCount = 0;
   String _lastMessage;

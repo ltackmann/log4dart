@@ -16,7 +16,7 @@ main() {
 }
 
 class MyClass {
-  final _logger = LoggerFactory.getLogger("MyClass");
+  static final _logger = LoggerFactory.getLogger("MyClass");
   
   someMethod() {
     _logger.info("a info message");
