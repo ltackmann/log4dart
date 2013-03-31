@@ -15,7 +15,7 @@ LoggerFactory.config["MyClass"].debugEnabled = false;
 LoggerFactory.config["MyClass"].infoEnabled = true;
 ```
 
-as seen above logger configurations can either be configured to a specific logger name
+as seen above logger configurations can either be bound to a specific logger name
 such as **MyClass** or matched multiple loggers using a regex such as **.***
 
 Formatting
