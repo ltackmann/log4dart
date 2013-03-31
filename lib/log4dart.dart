@@ -7,6 +7,7 @@ library log4dart;
 import "dart:collection";
 import "dart:mirrors";
 
+import "package:meta/meta.dart";
 import "package:sprintf/sprintf.dart";
 
 part "src/appenders/console_appender.dart";

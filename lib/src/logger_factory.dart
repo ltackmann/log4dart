@@ -45,15 +45,18 @@ class LoggerFactory {
    * Get a [Logger] named [loggerName]
    */
   static Logger getLogger(String loggerName) {
+    if(!_nameRegex.hasMatch(loggerName)) {
+      throw new ArgumentError("illegal logger name $loggerName, only letters, underscores and dots allowed");
+    }
     if(_builder == null) {
-      // no builder exists, default to LoggerImpl
+      // if no builder exists, default to LoggerImpl
       _builder = (n,c) => new LoggerImpl(n,c);
     }
     if(_loggerCache == null) {
       _loggerCache = new Map<String, Logger>();
     }
     if(!_loggerCache.containsKey(loggerName)) {
-      var loggerConfig = config[loggerName];
+      var loggerConfig = config.getConfigFor(loggerName);
       _loggerCache[loggerName] = _builder(loggerName, loggerConfig);
     }
     Logger logger = _loggerCache[loggerName];
@@ -75,6 +78,7 @@ class LoggerFactory {
   static Map<String, Logger> _loggerCache;
   static LoggerFactory _instance;
   static LoggerBuilder _builder;
+  static final RegExp _nameRegex = new RegExp(r"^\w+(\.\w+)?$");
 }
 
 /**

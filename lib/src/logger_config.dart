@@ -4,7 +4,14 @@
 
 part of log4dart;
 
-class LoggerConfig {
+class LoggerConfig implements Comparable<LoggerConfig> {
+  LoggerConfig(String configName)
+    : name = configName,
+      _nameRegex = new RegExp(configName);
+  
+  /** True if this [LoggerConfig] applies for logger named [loggerName] */
+  bool match(String loggerName) => _nameRegex.hasMatch(loggerName);
+
   String toString() {
     var str = """
       debugEnabled: $debugEnabled\n
@@ -16,8 +23,9 @@ class LoggerConfig {
     return str;
   }
 
-  LoggerConfig clone() {
-    LoggerConfig cfg = new LoggerConfig();
+  /** Clone this [LoggerConfig] using name [configName] */
+  LoggerConfig cloneAs(String configName) {
+    LoggerConfig cfg = new LoggerConfig(configName);
     cfg.debugEnabled = debugEnabled;
     cfg.errorEnabled = errorEnabled;
     cfg.infoEnabled = infoEnabled;
@@ -43,6 +51,20 @@ class LoggerConfig {
   /// * **x** Output the context of the logger
   String logFormat;
   
-  ///
+  /// [Appender]'s used by this [LoggerConfig]
   List<Appender> appenders;
+  
+  /// The name of this [LoggerConfig] 
+  final String name;
+  
+  @override
+  int compareTo(LoggerConfig other) => (other == this) ? 0 : (other.name.length).compareTo(name.length); 
+  
+  @override
+  bool operator ==(LoggerConfig other) => (other == null) ? false : (name == other.name); 
+  
+  @override
+  int get hashCode => name.hashCode;
+  
+  final RegExp _nameRegex;
 }

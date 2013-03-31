@@ -10,6 +10,9 @@
 library log4dart_vm;
 
 import "dart:io";
+
+import "package:meta/meta.dart";
+
 import "log4dart.dart";
 export "log4dart.dart";
 

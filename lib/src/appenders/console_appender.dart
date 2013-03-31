@@ -4,11 +4,10 @@
 
 part of log4dart;
 
-/**
- * Appender that logs to the console
- */
+/** Appender that logs to the console */
 class ConsoleAppender extends Appender {
-  void doAppend(String message) {
+  @override
+  _doAppend(String message) {
     print(message);
   }
 }

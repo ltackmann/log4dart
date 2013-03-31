@@ -2,8 +2,7 @@
 
 Log4Dart
 ========
-Powerful logging library for Dart with support for multiple appenders, configurable formatting 
-and log tracing using diagnostic contexts. 
+Powerful logging library with support for multiple appenders, configurable formatting and log tracing.
 
 Using log4dart
 --------------
@@ -35,7 +34,7 @@ class MyClass {
   someMethod() {
     _logger.info("a info message");
     
-    _logger.warnFormat("%s %s", ["a warning message", "formated using c's sprintf syntax"]);
+    _logger.warnFormat("%s %s", ["message", "formatting"]);
   }
 }
 ```

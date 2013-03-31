@@ -4,22 +4,24 @@
 
 part of log4dart;
 
-/**
- * Implemented by classes that performs the actual logging
- */
+/** Appenders does the actual logging */
 abstract class Appender {
-  Appender()
-    : _messageCount = 0;
+  /** Log a message */
+  append(String message) {
+    _doAppend(message);
+    _lastMessage = message;
+    _messageCount++;
+  }
   
-  /**
-   * Log a message.
-   */
-  doAppend(String message);
-  
-  /**
-   * Number of messages logged
-   */
+  /** Number of messages appended */
   int get messageCount => _messageCount;
   
-  int _messageCount;
+  /** The last message appended */
+  String get lastMessage => _lastMessage;
+  
+  /* method that does the actual appending, implemented by each concrete appender */
+  _doAppend(String message);
+  
+  int _messageCount = 0;
+  String _lastMessage;
 }

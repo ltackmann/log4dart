@@ -5,94 +5,60 @@
 part of log4dart;
 
 /**
- * Main user entry point of the log4dart API.
+ * Logger API.
  *
  * The actual logging takes place through concrete implementations of this interface.
  */
 abstract class Logger {
-  /**
-   * Log a message at the DEBUG level.
-   */
+  /** Log a message at the DEBUG level. */
   debug(String message);
 
-  /**
-   * Log a message at the DEBUG level according to the specified format and argument.
-   */
+  /** Log a message at the DEBUG level according to the specified format and argument. */
   debugFormat(String format, var args);
 
-  /**
-   * Log a message at the ERROR level.
-   */
+  /** Log a message at the ERROR level. */
   error(String message);
 
-  /**
-   * Log a message at the ERROR level according to the specified format and argument.
-   */
+  /** Log a message at the ERROR level according to the specified format and argument. */
   errorFormat(String format, var args);
 
-  /**
-   * Log a message at the INFO level.
-   */
+  /** Log a message at the INFO level. */
   info(String message);
 
-  /**
-   * Log a message at the INFO level according to the specified format and argument.
-   */
+  /** Log a message at the INFO level according to the specified format and argument. */
   infoFormat(String format, var args);
 
-  /**
-   * Log a message at the WARN level.
-   */
+  /** Log a message at the WARN level. */
   warn(String message);
 
-  /**
-   * Log a message at the WARN level according to the specified format and argument.
-   */
+  /** Log a message at the WARN level according to the specified format and argument. */
   warnFormat(String format, var args);
 
-  /**
-   * Is the logger instance enabled for the DEBUG level?
-   */
+  /** Is the logger instance enabled for the DEBUG level? */
   bool get debugEnabled;
 
-  /**
-   * Is the logger instance enabled for the INFO level?
-   */
+  /** Is the logger instance enabled for the INFO level? */
   bool get infoEnabled;
 
-  /**
-   * Is the logger instance enabled for the WARN level?
-   */
+  /** Is the logger instance enabled for the WARN level? */
   bool get warnEnabled;
 
-  /**
-   * Is the logger instance enabled for the ERROR level?
-   */
+  /** Is the logger instance enabled for the ERROR level? */
   bool get errorEnabled;
 
-  /**
-   * Clear all entries in the diagnostic context.
-   */
-  void clearContext();
+  /** Clear all entries in the diagnostic context. */
+  clearContext();
 
-  /**
-   * Return the name of this Logger instance.
-   */
+  /** Return the name of this Logger instance. */
   String name;
 
-  /**
-   * Get the diagnostic context identified by the key parameter.
-   */
-  String getContect(String key);
+  /** Get the diagnostic context value identified by the [key] parameter. */
+  String getContext(String key);
 
-  /**
-   * Put a context value (the val parameter) as identified with the key parameter into the loggers diagnostic context map.
-   */
-  void putContext(String key, String val);
+  /** Create a diagnostic context identified as [key] that can be traced in the log output as [val] */
+  putContext(String key, String val);
 
-  /**
-   * Remove the the diagnostic context identified by the key parameter.
-   */
-  void removeContext(String key);
+  /** Remove the the diagnostic context identified by the [key] parameter. */
+  removeContext(String key);
 }
 

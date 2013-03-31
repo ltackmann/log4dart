@@ -4,88 +4,101 @@
 
 part of log4dart;
 
-/**
- * Logger implementation with multiple appender and diagnostic support.
- *
- * Defaults to console logging with "[%d] %c %n:%x %m" as log format
- */
+/** Default [Logger] implementation with multiple appender and diagnostic support. */
 class LoggerImpl implements Logger {
    static Map<String, String> _context;
 
-   LoggerImpl(this.name, this._config) {
+   factory LoggerImpl(String loggerName, LoggerConfig loggerConfig) {
      if(_context == null) {
        _context = new LinkedHashMap();
      }
-     _formatter = new LogRecordFormatter(_config.logFormat);
-
-     debugEnabled = _config.debugEnabled;
-     errorEnabled = _config.errorEnabled;
-     infoEnabled = _config.infoEnabled;
-     warnEnabled = _config.warnEnabled;
+     var loggerFormatter = new LogRecordFormatter(loggerConfig.logFormat);
+     return new LoggerImpl._internal(loggerName, loggerConfig, loggerFormatter);
    }
+   
+   LoggerImpl._internal(this.name, this._config, this._formatter);
 
+   @override
    debug(String message) {
      if(debugEnabled) _append(message, LogLevel.DEBUG);
    }
 
+   @override
    debugFormat(String format, var args) {
      if(debugEnabled) debug(_format(format, args));
    }
 
+   @override
    error(String message) {
      if(errorEnabled) _append(message, LogLevel.ERROR);
    }
 
+   @override
    errorFormat(String format, var args) {
      if(errorEnabled) error(_format(format, args));
    }
 
+   @override
    info(String message) {
      if(infoEnabled) _append(message, LogLevel.INFO);
    }
 
+   @override
    infoFormat(String format, var args) {
      if(infoEnabled) info(_format(format, args));
    }
 
+   @override
    warn(String message) {
      if(warnEnabled) _append(message, LogLevel.WARN);
    }
 
+   @override
    warnFormat(String format, var args) {
      if(warnEnabled) warn(_format(format, args));
    }
 
-   void clearContext() => _context.clear();
+   @override
+   clearContext() => _context.clear();
 
-   String getContect(String key) => _context[key];
+   @override
+   String getContext(String key) => _context[key];
 
-   void putContext(String key, String val) {
+   @override
+   putContext(String key, String val) {
      _context[key] = val;
    }
 
-   void removeContext(String key) {
+   @override
+   removeContext(String key) {
      _context.remove(key);
    }
+   
+   @override
+   bool get debugEnabled => _config.debugEnabled;
+   
+   @override
+   bool get errorEnabled => _config.errorEnabled;
+   
+   @override
+   bool get infoEnabled => _config.infoEnabled;
+   
+   @override
+   bool get warnEnabled => _config.warnEnabled;
 
-   void _append(String message, LogLevel level) {
+   _append(String message, LogLevel level) {
      String ctx = "";
      if(_formatter.recordContext) {
-      _context.forEach((k,v) => ctx = ctx.concat("$v:"));
+      _context.forEach((k,v) => ctx = ctx + "$v:");
      }
      var logRecord = new LogRecord(message, level, name, ctx);
      var formattetMessage = _formatter.format(logRecord);
-     _config.appenders.forEach((Appender appender) => appender.doAppend(formattetMessage));
+     _config.appenders.forEach((Appender appender) => appender.append(formattetMessage));
    }
 
    String _format(String format, var args) => sprintf(format, args);
-
-   bool debugEnabled;
-   bool errorEnabled;
-   bool infoEnabled;
-   bool warnEnabled;
+   
    final String name;
-
    final LoggerConfig _config;
-   LogRecordFormatter _formatter;
+   final LogRecordFormatter _formatter;
 }
