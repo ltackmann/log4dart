@@ -14,24 +14,24 @@ Quick Guide
 
 2. Add log4dart to some code and run it
 ```dart
-    import "package:log4dart/log4dart.dart";
-    main() {
-      var myClass = new MyClass();
-      myClass.someMethod();
-    }
-    
-	class MyClass {
-  		static final _logger = LoggerFactory.getLoggerFor(MyClass);
-
-  		someMethod() {
-    		_logger.info("a info message");
-    
-    		_logger.warnFormat("%s %s", ["message", "formatting"]);
-  		}
+	import "package:log4dart/log4dart.dart";
+    	main() {
+		var myClass = new MyClass();
+		myClass.someMethod();
 	}
+	
+	class MyClass {
+		static final _logger = LoggerFactory.getLoggerFor(MyClass);
+	
+		someMethod() {
+	    		_logger.info("a info message");
+	
+	     		_logger.warnFormat("%s %s", ["message", "formatting"]);
+		}
+    	}
 ```
 
-Log4Dart is packages in various libaries depending on where you plan to use it 
+Log4Dart is split in multiple libraries so it can run on both servers and in browsers.
 
 ```dart
 // for client side logging (works both on the VM and when compiled to JS)
@@ -41,14 +41,17 @@ import "package:log4dart/log4dart.dart";
 import "package:log4dart/log4dart_vm.dart";
 ```
 
-You can retrieve loggers using in one of these two ways
+When you want to retrieve a logger instance you can do it in one of two ways
 
  1. **LoggerFactory.getLoggerFor(MyClass)** - create logger with the fully qualified name of MyClass
  1. **LoggerFactory.getLogger("MyClass")** - create logger with the name "MyClass"
  
 Where the qualified name is the library name and type name concatenated together.  
 
-For more information about how to configure log4dart see the [configuration guide](doc/Config.md). For
-infomation about its advanced features such as log tracing see [here](doc/Advanced.md).
+More Information
+----------------
+For information on how to configure Log4Dart, including log levels and output formatting, see 
+the [configuration guide](doc/Config.md). For infomation about Log4Dart's advanced features, 
+such as log tracing, see [here](doc/Advanced.md).
 
 [slf4j]: http://www.slf4j.org/
