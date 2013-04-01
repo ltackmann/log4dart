@@ -21,29 +21,14 @@ class LoggerFactory {
     _builder = builder;
   }
 
-  /**
-   * Get a [Logger] with the fully qualified name of [type]
-   * 
-   * WARNING currently this method is very expensive due to lack of features in dart:mirrors
-   */
+  /** Get a [Logger] with the fully qualified name of [type] */
   static Logger getLoggerFor(Type type) {
-    // TODO remove this very expensive lookup method once dart:mirrors allows you to reflect on type
-    var im = reflect(type);
-    var typeName = im.reflectee.toString();
-    var loggerName;
-    currentMirrorSystem().libraries.forEach((k,v) {
-      if(!k.startsWith("dart") && v.classes.containsKey(typeName)) {
-        loggerName = "${k}.${typeName}";
-        return;
-      }
-    });
-    assert(loggerName != null);
+    var cm = _getClassMirrorForType(type);
+    var loggerName = cm.qualifiedName;
     return getLogger(loggerName);
   }
   
-  /**
-   * Get a [Logger] named [loggerName]
-   */
+  /** Get a [Logger] named [loggerName] */
   static Logger getLogger(String loggerName) {
     if(!_nameRegex.hasMatch(loggerName)) {
       throw new ArgumentError("illegal logger name $loggerName, only letters, underscores and dots allowed");
@@ -64,14 +49,21 @@ class LoggerFactory {
     return logger;
   }
   
-  /**
-   * Access and configure the log subsystem
-   */
+  /** Access and configure the log subsystem */
   static LoggerConfigMap get config {
     if(_configMap == null) {
       _configMap = new LoggerConfigMap();
     }
     return _configMap;
+  }
+  
+  // Hack ! Waiting for a true method in dart:mirrors
+  static ClassMirror _getClassMirrorForType(Type type) {
+    var name = type.toString();
+    return currentMirrorSystem().libraries.values
+        .where((lib) => lib.classes.containsKey(name))
+        .map((lib) => lib.classes[name])
+        .first;
   }
 
   static LoggerConfigMap _configMap;

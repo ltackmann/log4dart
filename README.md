@@ -6,12 +6,12 @@ Powerful logging library with support for multiple appenders, configurable forma
 
 Quick Guide
 -----------
+
 1. Add the folowing to your **pubspec.yaml** and run **pub install**
 ```yaml
     dependencies:
       log4dart: any
 ```
-
 2. Add log4dart to some code and run it
 ```dart
 	import "package:log4dart/log4dart.dart";
