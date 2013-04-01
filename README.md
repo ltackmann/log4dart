@@ -9,28 +9,28 @@ Quick Guide
 
 1. Add the folowing to your **pubspec.yaml** and run **pub install**
 ```yaml
-dependencies:
-  log4dart: any
+	dependencies:
+	  log4dart: any
 ```
 
 2. Add log4dart to some code and run it
 ```dart
-import "package:log4dart/log4dart.dart";
-
-main() {
-	var myClass = new MyClass();
-	myClass.someMethod();
-}
+	import "package:log4dart/log4dart.dart";
 	
-class MyClass {
-	static final _logger = LoggerFactory.getLoggerFor(MyClass);
-
-	someMethod() {
-		_logger.info("a info message");
-		// :
-		_logger.warnFormat("%s %s", ["message", "formatting"]);
+	main() {
+		var myClass = new MyClass();
+		myClass.someMethod();
 	}
-}
+		
+	class MyClass {
+		static final _logger = LoggerFactory.getLoggerFor(MyClass);
+	
+		someMethod() {
+			_logger.info("a info message");
+			// :
+			_logger.warnFormat("%s %s", ["message", "formatting"]);
+		}
+	}
 ```
 
 Log4Dart is split in multiple libraries so it can run on both servers and in browsers.
