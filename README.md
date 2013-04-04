@@ -2,7 +2,7 @@
 
 Log4Dart
 ========
-Powerful logging library with support for multiple appenders, configurable formatting and log tracing.
+Logging library with support for multiple appenders, configurable formatting and log tracing.
 
 Quick Guide
 -----------
