@@ -12,7 +12,6 @@ Quick Guide
 	dependencies:
 	  log4dart: any
 ```
-
 2. Add log4dart to some code and run it
 ```dart
 	import "package:log4dart/log4dart.dart";
