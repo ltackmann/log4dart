@@ -4,13 +4,11 @@
 
 part of log4dart;
 
-/**
- * A logging event
- */ 
+/** A logging event */ 
 class LogRecord {
   factory LogRecord(String message, LogLevel logLevel, String qualifiedLoggerName, String context) {
     var i = qualifiedLoggerName.indexOf(".");
-    String simpleLoggerName = (i > -1) ? qualifiedLoggerName.slice(i+1) : qualifiedLoggerName; 
+    String simpleLoggerName = (i > -1) ? qualifiedLoggerName.substring(i+1) : qualifiedLoggerName; 
     return new LogRecord._internal(message, logLevel, context, new DateTime.now(), simpleLoggerName, qualifiedLoggerName);
   }
   

@@ -53,7 +53,7 @@ class LogRecordFormatter {
     String space = " ";
     while(_hasMore() && _peek() == " ") {
       _advance();
-      space = space.concat(" ");
+      space += " ";
     }
     _formatters.add((LogRecord record) => space);
   }
@@ -85,7 +85,7 @@ class LogRecordFormatter {
   _parseText() {
      String text = "${_currentChar}";
      while(_hasMore() && _peek() != "%") {
-       text = text.concat(_peek());
+       text += _peek();
        _advance();
      }
      _formatters.add((LogRecord record) => text);
@@ -102,7 +102,7 @@ class LogRecordFormatter {
    */ 
   String format(LogRecord record) {
     var res = "";
-    _formatters.forEach((_RecordFormatter formatter) => res = res.concat(formatter(record)));
+    _formatters.forEach((_RecordFormatter formatter) => res += formatter(record));
     return res;
   }
 
@@ -122,7 +122,9 @@ typedef String _RecordFormatter(LogRecord record);
  */ 
 class _LogFormatReader {
   factory _LogFormatReader(String formatString) {
-    Expect.isFalse(formatString == null && formatString.isEmpty, "log format cannot be null or empty");
+    if(formatString == null && formatString.isEmpty) {
+      throw new ArgumentError("log format cannot be null or empty");
+    }
     return new _LogFormatReader._internal(formatString, formatString.length);
   }
 

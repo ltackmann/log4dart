@@ -1,11 +1,10 @@
 name: log4dart
-version: 1.4.3
+version: 1.4.4
 author: Lars Tackmann <lars@solvr.io>
 description: Logging library with support for multiple appenders, configurable formatting and log tracing.
 homepage: https://github.com/ltackmann/log4dart
 dependencies:
-  meta: ">=0.4.0" 
-  sprintf: ">=1.0.5 <2.0.0"
+  sprintf: '>=1.0.6 <2.0.0'
+  meta: '>=0.4.0'
 dev_dependencies:
   unittest: any
-  
