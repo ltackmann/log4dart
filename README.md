@@ -33,6 +33,8 @@ Quick Guide
 	}
 ```
 
+Getting Loggers
+---------------
 Log4Dart is split in multiple libraries so it can run on both servers and in browsers.
 
 ```dart
@@ -52,8 +54,8 @@ Where the qualified name is the library name and type name concatenated together
 
 More Information
 ----------------
-For information on how to configure Log4Dart, including log levels and output formatting, see 
-the [configuration guide](https://github.com/ltackmann/log4dart/blob/master/doc/Config.md). For infomation about Log4Dart's advanced features, 
-such as log tracing, check ou the [advanced feature guide](https://github.com/ltackmann/log4dart/blob/master/doc/Advanced.md).
+The [configuration guide](https://github.com/ltackmann/log4dart/blob/master/doc/Config.md) covers everything from 
+log level setup to output formatting. For more advanced features, such as log tracing, check out the 
+[advanced feature guide](https://github.com/ltackmann/log4dart/blob/master/doc/Advanced.md).
 
 [slf4j]: http://www.slf4j.org/
