@@ -50,7 +50,7 @@ abstract class Logger {
   clearContext();
 
   /** Return the name of this Logger instance. */
-  String name;
+  String get name;
 
   /** Get the diagnostic context value identified by the [key] parameter. */
   String getContext(String key);

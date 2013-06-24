@@ -23,7 +23,7 @@ class LoggerFactory {
 
   /** Get a [Logger] with the fully qualified name of [type] */
   static Logger getLoggerFor(Type type) {
-    var cm = _getClassMirrorForType(type);
+    var cm = reflectClass(type);
     var loggerName = MirrorSystem.getName(cm.qualifiedName);
     return getLogger(loggerName);
   }
@@ -57,15 +57,6 @@ class LoggerFactory {
     return _configMap;
   }
   
-  // Hack ! Waiting for a true method in dart:mirrors
-  static ClassMirror _getClassMirrorForType(Type type) {
-    var name = new Symbol(type.toString());
-    return currentMirrorSystem().libraries.values
-        .where((lib) => lib.classes.containsKey(name))
-        .map((lib) => lib.classes[name])
-        .first;
-  }
-
   static LoggerConfigMap _configMap;
   static Map<String, Logger> _loggerCache;
   static LoggerFactory _instance;
