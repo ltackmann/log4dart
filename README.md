@@ -1,12 +1,9 @@
 [![Build Status](https://drone.io/github.com/ltackmann/log4dart/status.png)](https://drone.io/github.com/ltackmann/log4dart/latest)
 
-Log4Dart
-========
+# Log4Dart
 Logging library with multiple appenders, configurable formatting and log tracing.
 
-Quick Guide
------------
-
+## Getting Started
 **1.** Add the folowing to your **pubspec.yaml** and run **pub install**
 ```yaml
 	dependencies:
@@ -33,8 +30,7 @@ Quick Guide
 	}
 ```
 
-Getting Loggers
----------------
+## Creating Loggers
 Log4Dart is split in multiple libraries so it can run on both servers and in browsers.
 
 ```dart
@@ -52,8 +48,7 @@ When you want to retrieve a logger instance you can do it in one of two ways
  
 Where the qualified name is the library name and type name concatenated together.  
 
-More Information
-----------------
+## More Information
 The [configuration guide](https://github.com/ltackmann/log4dart/blob/master/doc/Config.md) covers everything from 
 log level setup to output formatting. For more advanced features, such as log tracing, check out the 
 [advanced feature guide](https://github.com/ltackmann/log4dart/blob/master/doc/Advanced.md).
