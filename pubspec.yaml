@@ -1,12 +1,12 @@
 name: log4dart
-version: 1.4.12
+version: 1.4.13
 author: Lars Tackmann <lars@solvr.io>
 description: Logging library with multiple appenders, configurable formatting and log tracing.
 homepage: https://github.com/ltackmann/log4dart
 environment:
   sdk: '>=0.8.10+6 <2.0.0'
 dependencies:
-  meta: '>=0.8.8 < 0.10.0'
+  meta: ">=0.8.8 <0.9.0"
   sprintf: '>=1.0.8'
 dev_dependencies:
   unittest: any
