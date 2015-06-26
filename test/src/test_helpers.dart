@@ -4,14 +4,10 @@
 
 library log4dart_test;
 
-import "package:test/test.dart";
-import "../lib/log4dart_vm.dart";
+import 'package:log4dart/log4dart_vm.dart'; 
 
-part "src/logging_test.dart";
-part "src/config_test.dart";
-
-main() {
-  appender = new StringAppender();
+StringAppender getTestAppender() {
+  StringAppender appender = new StringAppender();
   // Set defaults
   LoggerFactory.config[".*"].debugEnabled = false;
   LoggerFactory.config[".*"].logFormat = "[%d] %c %N:%x %m";
@@ -25,11 +21,8 @@ main() {
   LoggerFactory.config[".*MyClass"].warnEnabled = false;
   LoggerFactory.config[".*MyClass"].errorEnabled = false;
   
-  new ConfigTest();
-  new LoggingTest();
+  return appender;
 }
-
+  
 // globals used in tests
-StringAppender appender;
 class MyClass { }
-

@@ -2,10 +2,21 @@
 // for details. All rights reserved. Use of this source code is governed 
 // by a Apache license that can be found in the LICENSE file.
 
-part of log4dart_test;
+library log4dart_logging_test;
+
+import "package:test/test.dart";
+import 'package:log4dart/log4dart_vm.dart';
+
+import 'src/test_helpers.dart';
+
+main() {
+  new LoggingTest();
+}
 
 class LoggingTest {
   LoggingTest() {
+    StringAppender appender = getTestAppender();
+    
     group("basic logging -", () {
       setUp(() => appender.clear());
 
@@ -87,6 +98,10 @@ class LoggingTest {
       // TODO test that log messages are also written to file
     });
   }
+  
+
 }
+
+
 
 
