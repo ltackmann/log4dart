@@ -1,0 +1,11 @@
+language: dart
+sudo: false
+dart:
+  - stable
+script: ./run_tests.sh
+branches:
+  only:
+    - master
+cache:
+  directories:
+  - $HOME/.pub-cache
