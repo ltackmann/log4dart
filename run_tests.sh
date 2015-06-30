@@ -1,4 +1,16 @@
 #!/bin/bash
+
 set -e
 
-pub run test
+if [ "$COVERALLS_TOKEN" ]; then
+  # run tests on travis and publish code coverage
+  pub global activate dart_coveralls
+  pub global run dart_coveralls report \
+    --token $COVERALLS_TOKEN \
+    --retry 2 \
+    --exclude-test-files \
+    test/log4dart_test.dart
+else
+  # run tests locally
+  dart --checked test/log4dart_test.dart
+fi

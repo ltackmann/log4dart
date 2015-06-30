@@ -4,7 +4,16 @@
 
 library log4dart_test;
 
+import 'src/config_test.dart';
+import 'src/logging_test.dart';
+
 import 'package:log4dart/log4dart_vm.dart'; 
+
+main() {
+  var appender = getTestAppender();
+  new ConfigTest(appender); 
+  new LoggingTest(appender);
+}
 
 StringAppender getTestAppender() {
   StringAppender appender = new StringAppender();
@@ -23,6 +32,3 @@ StringAppender getTestAppender() {
   
   return appender;
 }
-  
-// globals used in tests
-class MyClass { }

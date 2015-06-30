@@ -7,17 +7,9 @@ library log4dart_logging_test;
 import "package:test/test.dart";
 import 'package:log4dart/log4dart_vm.dart';
 
-import 'src/test_helpers.dart';
-
-main() {
-  new LoggingTest();
-}
-
 class LoggingTest {
-  LoggingTest() {
-    StringAppender appender = getTestAppender();
-    
-    group("basic logging -", () {
+  LoggingTest(StringAppender appender) {
+    group("logging (basic) -", () {
       setUp(() => appender.clear());
 
       test("default configuration", () {
@@ -57,10 +49,10 @@ class LoggingTest {
         var logger = LoggerFactory.getLoggerFor(MyClass);
         
         logger.debug("a debug message");
-        expect(appender.lastMessage, matches(r"DEBUG log4dart_test.MyClass: a debug message"), reason:"debug is enabled by override");
+        expect(appender.lastMessage, matches(r"DEBUG log4dart_logging_test.MyClass: a debug message"), reason:"debug is enabled by override");
         
         logger.info("a info message");
-        expect(appender.lastMessage, matches(r"INFO log4dart_test.MyClass: a info message"), reason:"info is enabled by default");
+        expect(appender.lastMessage, matches(r"INFO log4dart_logging_test.MyClass: a info message"), reason:"info is enabled by default");
         expect(appender.messageCount, equals(2));
         
         logger.warn("a warn message");
@@ -71,7 +63,7 @@ class LoggingTest {
       });
     });
 
-    group("context logging -", () {
+    group("logging (context) -", () {
       var logger = LoggerFactory.getLogger("ContextLogger");
       
       setUp(() => appender.clear());
@@ -93,15 +85,14 @@ class LoggingTest {
       });
     });
     
-    group("file logging -", () {
+    group("logging (file) -", () {
       LoggerFactory.config["FileLogTest"].appenders = [new FileAppender("/tmp/log.txt")];
       // TODO test that log messages are also written to file
     });
   }
-  
-
 }
 
-
+// globals used in tests
+class MyClass { }
 
 

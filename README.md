@@ -1,5 +1,5 @@
-[![Build Status](https://drone.io/github.com/ltackmann/log4dart/status.png)](https://drone.io/github.com/ltackmann/log4dart/latest)
 [![Build Status](https://travis-ci.org/ltackmann/log4dart.svg)](https://travis-ci.org/ltackmann/log4dart)
+[![Coverage Status](https://coveralls.io/repos/ltackmann/log4dart/badge.svg)](https://coveralls.io/r/ltackmann/log4dart)
 
 # Log4Dart
 Logging library with multiple appenders, configurable formatting and log tracing.
