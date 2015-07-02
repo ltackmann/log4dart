@@ -9,8 +9,8 @@ if [ "$COVERALLS_TOKEN" ]; then
     --token $COVERALLS_TOKEN \
     --retry 2 \
     --exclude-test-files \
-    test/log4dart_test.dart
+    test/all.dart
 else
   # run tests locally
-  dart --checked test/log4dart_test.dart
+  dart --checked test/all.dart
 fi

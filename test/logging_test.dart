@@ -7,6 +7,17 @@ library log4dart_logging_test;
 import "package:test/test.dart";
 import 'package:log4dart/log4dart_vm.dart';
 
+import 'src/test_utils.dart';
+
+main() {
+  var appender = getTestAppender();
+  runTest(appender);
+}
+
+runTest(Appender appender) {
+  new LoggingTest(appender);  
+}
+
 class LoggingTest {
   LoggingTest(StringAppender appender) {
     group("logging (basic) -", () {

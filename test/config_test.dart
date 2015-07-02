@@ -7,6 +7,17 @@ library log4dart_config_test;
 import "package:test/test.dart";
 import 'package:log4dart/log4dart_vm.dart';
 
+import 'src/test_utils.dart';
+
+main() {
+  var appender = getTestAppender();
+  runTest(appender);
+}
+
+runTest(Appender appender) {
+  new ConfigTest(appender);  
+}
+
 class ConfigTest {
   ConfigTest(StringAppender appender) {
 

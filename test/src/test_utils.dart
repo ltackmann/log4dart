@@ -2,18 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed 
 // by a Apache license that can be found in the LICENSE file.
 
-library log4dart_test;
+library log4dart_test_utils;
 
-import 'src/config_test.dart';
-import 'src/logging_test.dart';
-
-import 'package:log4dart/log4dart_vm.dart'; 
-
-main() {
-  var appender = getTestAppender();
-  new ConfigTest(appender); 
-  new LoggingTest(appender);
-}
+import 'package:log4dart/log4dart.dart';
 
 StringAppender getTestAppender() {
   StringAppender appender = new StringAppender();
