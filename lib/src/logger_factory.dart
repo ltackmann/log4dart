@@ -1,5 +1,5 @@
 // Copyright (c) 2013-2015, the project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed 
+// for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
 part of log4dart;
@@ -10,6 +10,11 @@ part of log4dart;
  * Unless otherwise specified it defaults to the bundled [LoggerImpl]
  */
 class LoggerFactory {
+  static LoggerConfigMap _configMap;
+  static Map<String, Logger> _loggerCache;
+  static LoggerBuilder _builder;
+  static final RegExp _nameRegex = new RegExp(r"^\w+(\.\w+)?$");
+
   /**
    * Assign a [LoggerBuilder] to this factory. Builders are functions that takes a name and a config
    * and creates a instance of the actual [Logger] implementations.
@@ -27,7 +32,7 @@ class LoggerFactory {
     var loggerName = MirrorSystem.getName(cm.qualifiedName);
     return getLogger(loggerName);
   }
-  
+
   /** Get a [Logger] named [loggerName] */
   static Logger getLogger(String loggerName) {
     if(!_nameRegex.hasMatch(loggerName)) {
@@ -48,7 +53,7 @@ class LoggerFactory {
     assert(logger != null);
     return logger;
   }
-  
+
   /** Access and configure the log subsystem */
   static LoggerConfigMap get config {
     if(_configMap == null) {
@@ -56,12 +61,6 @@ class LoggerFactory {
     }
     return _configMap;
   }
-  
-  static LoggerConfigMap _configMap;
-  static Map<String, Logger> _loggerCache;
-  static LoggerFactory _instance;
-  static LoggerBuilder _builder;
-  static final RegExp _nameRegex = new RegExp(r"^\w+(\.\w+)?$");
 }
 
 /**
