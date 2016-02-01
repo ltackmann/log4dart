@@ -11,3 +11,6 @@ branches:
 cache:
   directories:
     - $HOME/.pub-cache
+notifications:
+  email:
+    - ltackmann@gmail.com
