@@ -6,12 +6,5 @@ build
 pubspec.lock
 packages
 
-# idea
-*.iml
-*.ipr
-*.iws
-.idea/
-*.dart.js
-*.js_
-*.js.deps
-*.js.map
+# atom
+.atom
