@@ -1,5 +1,5 @@
-// Copyright (c) 2013-2015, the project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed 
+// Copyright (c) 2013, the project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
 library log4dart_test_utils;
@@ -20,6 +20,6 @@ StringAppender getTestAppender() {
   LoggerFactory.config[".*MyClass"].debugEnabled = true;
   LoggerFactory.config[".*MyClass"].warnEnabled = false;
   LoggerFactory.config[".*MyClass"].errorEnabled = false;
-  
+
   return appender;
 }

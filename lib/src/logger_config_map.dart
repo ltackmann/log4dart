@@ -1,5 +1,5 @@
-// Copyright (c) 2013-2015, the project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed 
+// Copyright (c) 2013, the project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
 part of log4dart;
@@ -18,7 +18,7 @@ class LoggerConfigMap {
 
     _addConfig(defaults);
   }
-  
+
   /** Get or create a [LoggerConfig] for [name] */
   LoggerConfig operator [](String name) {
     if(_getConfig(name) == null) {
@@ -28,9 +28,9 @@ class LoggerConfigMap {
     return _getConfig(name);
   }
 
-  /** 
-   * Get a [LoggerConfig] for [loggerName] by first searching for direct matches, if none is found 
-   * then use stored logger configurations as regular expressions and return the longest match. If 
+  /**
+   * Get a [LoggerConfig] for [loggerName] by first searching for direct matches, if none is found
+   * then use stored logger configurations as regular expressions and return the longest match. If
    * none matches then the default log configuration is returned.
    */
   LoggerConfig getConfigFor(String loggerName) {
@@ -44,14 +44,14 @@ class LoggerConfigMap {
     assert(config != null);
     return config;
   }
- 
+
   _addConfig(LoggerConfig cfg) {
     _configs[cfg.name] = cfg;
     // TODO use a sorted set when it arrives in dart:collection
     _sortedConfigs.add(cfg);
     _sortedConfigs.sort();
   }
-  
+
   LoggerConfig _getConfig(String matcher) => _configs[matcher];
 
   final List<LoggerConfig> _sortedConfigs = new List<LoggerConfig>();

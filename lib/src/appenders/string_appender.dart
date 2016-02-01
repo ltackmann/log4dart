@@ -1,5 +1,5 @@
-// Copyright (c) 2013-2015, the project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed 
+// Copyright (c) 2013, the project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
 part of log4dart;
@@ -19,10 +19,9 @@ class StringAppender extends Appender {
     _stringBuffer.clear();
     _messageCount = 0;
   }
-  
+
   /** True when appender is empty */
   bool get isEmpty => content.isEmpty && messageCount == 0;
-  
+
   final StringBuffer _stringBuffer = new StringBuffer();
 }
-

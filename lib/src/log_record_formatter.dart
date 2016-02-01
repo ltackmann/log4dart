@@ -1,12 +1,12 @@
-// Copyright (c) 2013-2015, the project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed 
+// Copyright (c) 2013, the project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
 part of log4dart;
 
 /**
  * A log record formatter for the given log format
- */ 
+ */
 class LogRecordFormatter {
   LogRecordFormatter(String _logFormat)
     : recordContext = false,
@@ -73,7 +73,7 @@ class LogRecordFormatter {
   _parseQualifiedName() {
     _formatters.add((LogRecord record) => record.qualifiedLoggerName);
   }
-  
+
   _parseSimpleName() {
     _formatters.add((LogRecord record) => record.simpleLoggerName);
   }
@@ -99,7 +99,7 @@ class LogRecordFormatter {
 
   /**
    * Returns the formatted version of a [LogRecord]
-   */ 
+   */
   String format(LogRecord record) {
     var res = "";
     _formatters.forEach((_RecordFormatter formatter) => res += formatter(record));
@@ -113,13 +113,13 @@ class LogRecordFormatter {
 }
 
 /**
- * Signature for the log record formatter 
- */ 
+ * Signature for the log record formatter
+ */
 typedef String _RecordFormatter(LogRecord record);
 
 /**
  * Reads format strings one token at a time
- */ 
+ */
 class _LogFormatReader {
   factory _LogFormatReader(String formatString) {
     if(formatString == null && formatString.isEmpty) {
@@ -151,4 +151,3 @@ class _LogFormatReader {
   final int _formatLength;
   int _position;
 }
-

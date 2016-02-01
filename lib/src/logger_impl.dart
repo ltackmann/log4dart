@@ -1,5 +1,5 @@
-// Copyright (c) 2013-2015, the project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed 
+// Copyright (c) 2013, the project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed
 // by a Apache license that can be found in the LICENSE file.
 
 part of log4dart;
@@ -15,7 +15,7 @@ class LoggerImpl implements Logger {
      var loggerFormatter = new LogRecordFormatter(loggerConfig.logFormat);
      return new LoggerImpl._internal(loggerName, loggerConfig, loggerFormatter);
    }
-   
+
    LoggerImpl._internal(this.name, this._config, this._formatter);
 
    @override
@@ -73,16 +73,16 @@ class LoggerImpl implements Logger {
    removeContext(String key) {
      _context.remove(key);
    }
-   
+
    @override
    bool get debugEnabled => _config.debugEnabled;
-   
+
    @override
    bool get errorEnabled => _config.errorEnabled;
-   
+
    @override
    bool get infoEnabled => _config.infoEnabled;
-   
+
    @override
    bool get warnEnabled => _config.warnEnabled;
 
@@ -97,7 +97,7 @@ class LoggerImpl implements Logger {
    }
 
    String _format(String format, var args) => sprintf(format, args);
-   
+
    final String name;
    final LoggerConfig _config;
    final LogRecordFormatter _formatter;
