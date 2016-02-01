@@ -1,6 +1,5 @@
 #### 1.4.17
 * Correct copyright message
-* Remove dependency on specific Dart SDK version
 
 #### 1.4.16
 * Bump dependencies
@@ -16,3 +15,6 @@
 
 #### 1.4.12
 * Switch to new Dart test library
+
+#### 1.4.11
+* Add changelog
