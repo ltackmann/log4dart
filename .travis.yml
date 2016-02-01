@@ -13,4 +13,7 @@ cache:
     - $HOME/.pub-cache
 notifications:
   email:
-    - ltackmann@gmail.com
+    on_success: always
+    on_failure: always 
+    recipients:
+      - ltackmann@gmail.com
