@@ -1,3 +1,6 @@
+#### 1.4.18
+* Remove dependency on meta package 
+
 #### 1.4.17
 * Correct copyright message
 
