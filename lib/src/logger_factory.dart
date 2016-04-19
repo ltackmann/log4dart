@@ -28,6 +28,7 @@ class LoggerFactory {
 
   /** Get a [Logger] with the fully qualified name of [type] */
   static Logger getLoggerFor(Type type) {
+    /** TODO use reflectable or mirrors annotations to limit JS size */
     var cm = reflectClass(type);
     var loggerName = MirrorSystem.getName(cm.qualifiedName);
     return getLogger(loggerName);
