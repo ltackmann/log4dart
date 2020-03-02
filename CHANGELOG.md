@@ -1,3 +1,6 @@
+#### 2.0.0
+* Updated to work with Dart 2
+
 #### 1.4.18
 * Remove dependency on meta package 
 
